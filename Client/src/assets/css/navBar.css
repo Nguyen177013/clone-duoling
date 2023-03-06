@@ -34,6 +34,13 @@
 .nav__item{
     text-decoration: none;
 }
+.uft{
+    transition: 0.2s;
+    border-radius: 12px;
+}
+.uft:hover{
+    background-color: #e6e6e6;
+}
 .item{
     display: flex;
     height: 50px;

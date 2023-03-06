@@ -16,3 +16,21 @@
     z-index: 1;
     top: 0;
 }
+.flex{
+    display: flex;
+    flex: 0 0 auto;
+}
+.flex__row{
+    display: flex;
+    flex-direction: row;
+}
+.flex__column{
+    display: flex;
+    flex-direction: column;
+}
+.flex__end{
+    align-self: flex-end;
+    bottom: 24px;
+    flex-direction: column-reverse;
+    position: sticky;
+}

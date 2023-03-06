@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import Navbar from './components/Navbar'
-import './assets/css/index.css'
+import Navbar from './components/Navbar/Navbar'
+import Quizs from './components/Quizs/Quizs'
+import "./assets/css/app.css"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           => Levels
           =>Target ??        
         */}
+        <Quizs></Quizs>
     </div>
   )
 }

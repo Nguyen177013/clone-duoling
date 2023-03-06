@@ -1,7 +1,7 @@
 const NavItems = (props) => {
     return ( 
         //     color: #1cb0f6;
-        <div className= {props.status || ""}>
+        <div className= {props.status || "uft"}>
         <a href="" className="nav__item">
             <span className="item">
                 <div className="item__icon">
