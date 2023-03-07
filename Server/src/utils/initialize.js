@@ -5,8 +5,9 @@ require('dotenv').config();
 const MongooseURL = process.env.DB_URL;
 
 const initial = async () => {
-    mongoose.connect(MongooseURL, {
-        useNewUrlParser: true,
-    });
+    let result = await mongoose.connect("mongodb://localhost:27017/Duolingo");
+    if(result){
+        console.log("Connected to Mongoose successfully");
+    }
 };
 module.exports = initial;

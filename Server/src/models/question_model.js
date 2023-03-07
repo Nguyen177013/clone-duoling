@@ -9,7 +9,7 @@ const Questions = new mongoose.Schema({
         required: true
     },
     answer:{
-        type: "String",
+        type: "Number",
         default:0
     },
     type:{
@@ -17,11 +17,6 @@ const Questions = new mongoose.Schema({
         required:true,
         ref:"Types"
     },
-    difficulty:{
-        type:"Number",
-        required:true,
-        default:0
-    }
 })
 
-mongoose.model('Questions', Questions);
+module.exports=mongoose.model('questions', Questions);

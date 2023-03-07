@@ -5,4 +5,4 @@ const Types = new mongoose.Schema({
         required: true,
     },
 });
-mongoose.model("Types", Types);
+module.exports =  mongoose.model("Types", Types);

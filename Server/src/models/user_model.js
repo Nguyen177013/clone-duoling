@@ -21,4 +21,4 @@ const User = new mongoose.Schema({
         default : false,
     }
 });
-mongoose.model("Users", User);
+mongoose.model("users", User);

@@ -13,9 +13,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use("/api-questions",mainRouter.questions);
-app.use("/api-levels",mainRouter.levels);
-app.use("/api-users",mainRouter.users);
+app.use("/api/questions",mainRouter.questions);
+app.use("/api/levels",mainRouter.levels);
+app.use("/api/users",mainRouter.users);
+app.use('/api/types', mainRouter.types);
 
 initialize().then(()=>{
     database();

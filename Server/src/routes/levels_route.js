@@ -1,8 +1,8 @@
 const express = require("express");
 const userController = require("../controllers/user_controller");
 
-const QuestionsRoute = express.Router();
+const LevelsRoute = express.Router();
 
-userRouter.post("/", userController);
-userRouter.post("/checkUser", userController);
-module.exports = userRouter;
+LevelsRoute.post("/", userController);
+LevelsRoute.post("/checkUser", userController);
+module.exports = LevelsRoute;
