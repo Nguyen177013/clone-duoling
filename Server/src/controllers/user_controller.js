@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
 const express = require("express");
 const userController = express.Router();
-const User = require("../models/user_model")
+const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
 
 userController.post(
@@ -41,7 +40,18 @@ userController.post("/checkUser", async (req, res) => {
     const getUser = await User.findOne({ username: username });
     if (getUser != null) {
         const checkPass = await bcrypt.compare(password, getUser.password);
-        if (checkPass == true || username != null) return res.json(getUser);
+        if (checkPass == true && username != null) {
+            if (getUser.isOld) {
+                return res.json(getUser);
+            } else {
+                const newData = await User.findOneAndUpdate(
+                    { username: username },
+                    { isOld: true },
+                    { new: true }
+                );
+                return res.json(newData);
+            }
+        }
         return res.json({ message: "Password is not correct." });
     } else {
         return res.json({ message: "Account is not correct." });

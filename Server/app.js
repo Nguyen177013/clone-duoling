@@ -1,9 +1,9 @@
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
-const cookieParser = require('cookie-parser');
-const initialize = require('./src/utils/initialize');
-const database = require('./src/utils/database');
+const cookieParser = require("cookie-parser");
+const initialize = require("./src/utils/initialize");
+const database = require("./src/utils/database");
 const port = process.env.PORT;
 const mainRouter = require("./src/routes/main_route");
 
@@ -12,11 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use("/api/questions", mainRouter.questions);
+app.use("/api/levels", mainRouter.levels);
+app.use("/api/users", mainRouter.users);
+app.use("/api/types", mainRouter.types);
+app.use("/api/packages", mainRouter.packages);
 
-app.use("/api/questions",mainRouter.questions);
-app.use("/api/levels",mainRouter.levels);
-app.use("/api/users",mainRouter.users);
-app.use('/api/types', mainRouter.types);
 
 initialize().then(()=>{
     database();
@@ -24,5 +25,5 @@ initialize().then(()=>{
         console.log(`Server is listening on port ${port}`);
     })
 }).catch(ex=>{
-    console.log(ex.message);  
+    console.log(ex.message);
 });
