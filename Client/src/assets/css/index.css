@@ -18,7 +18,9 @@
 }
 .flex{
     display: flex;
-    flex: 0 0 auto;
+}
+.wrap{
+    flex-wrap: wrap;
 }
 .flex__row{
     display: flex;

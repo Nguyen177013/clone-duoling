@@ -7,7 +7,6 @@ const Navbar = (props) => {
             <div className="quiz__logo">
                 <a href="" className="quiz__homepage">
                     <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/70a4be81077a8037698067f583816ff9.svg" alt="Duolingo Logo" />
-                    <p>-CHing CHong</p>
                 </a>
             </div>
             <div className="quiz__navitems">
