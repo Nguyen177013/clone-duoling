@@ -5,7 +5,7 @@ const Questions = new mongoose.Schema({
         required: true
     },
     options:{
-        type:["String"],
+        type:["Object"],                
         required: true
     },
     type:{

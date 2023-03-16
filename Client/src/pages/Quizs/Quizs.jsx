@@ -1,5 +1,5 @@
 import "../../assets/css/quizs.css"
-import QuizProgress from "../Progress/QuizProgress";
+import QuizProgress from "../../components/Progress/QuizProgress";
 import QuizLevel from "../Quizs/QuizLevels";
 const Quizs = () => {
     return (
