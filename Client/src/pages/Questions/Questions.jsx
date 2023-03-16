@@ -1,6 +1,7 @@
 import "../../assets/css/questions.css"
-import { useEffect } from "react";
-const Questions = () => {
+import { useEffect} from "react";
+import { Link } from "react-router-dom";
+const Questions = ({index}) => {
     useEffect(() => {
         const questions = document.querySelectorAll('.question');
         questions.forEach((question, index) => {
@@ -25,80 +26,18 @@ const Questions = () => {
                     break;
             }
         })
-        return ()=>{
-            console.log("gone :) 29/Question.jsx");
+        return () => {
         }
     }, [])
     return (
         <div className="questions flex__column align-item__center">
             <div className="question question__first">
                 <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
-                </div>
-            </div>
-            <div className="question">
-                <div className="question__btn">
-                    <button>
-                        1
-                    </button>
+                    <Link to="/learn/unit/1">
+                        <button>
+                            1
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

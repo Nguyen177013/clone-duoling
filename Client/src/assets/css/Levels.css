@@ -3,6 +3,18 @@
     max-width: 630px;
     flex: 1;
 }
+.levels__pending{
+    margin-top: 3rem;
+    font-size: 34px;
+    position: relative;
+    display: inline-block;
+}
+.pending__img{
+    width: 70px;
+    position: absolute;
+    right: -60px;
+    top: 0;
+}
 .quiz__levels__header{
     background-size: 100% 100%;
     border-radius: 13px;
