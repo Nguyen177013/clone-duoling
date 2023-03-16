@@ -5,12 +5,8 @@ const Questions = new mongoose.Schema({
         required: true
     },
     options:{
-        type:["String"],
+        type:["Object"],                
         required: true
-    },
-    answer:{
-        type: "Number",
-        default:0
     },
     type:{
         type:mongoose.SchemaTypes.ObjectId,

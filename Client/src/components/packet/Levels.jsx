@@ -5,6 +5,7 @@ const Levels = (props) => {
     return ( 
         <div className="levels">
             <Level/>
+            <Level/>
         </div>
      );
 }

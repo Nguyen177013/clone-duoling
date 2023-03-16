@@ -1,9 +1,9 @@
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,400&family=Source+Sans+3:wght@300;400;500;600;700;800&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans 3', sans-serif;
 }
 .border__right__fullHeight{
     border-right: 2px solid rgba(229, 229, 229, 1);
@@ -25,6 +25,9 @@
 .flex__row{
     display: flex;
     flex-direction: row;
+}
+.align-item__center{
+    align-items: center;
 }
 .flex__column{
     display: flex;

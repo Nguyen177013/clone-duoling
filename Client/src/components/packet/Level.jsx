@@ -1,3 +1,4 @@
+import Questions from "../../pages/Questions/Questions";
 
 const Level = () => {
     return (
@@ -9,9 +10,7 @@ const Level = () => {
                     <span>Hướng Dẫn</span>
                 </a>
             </header>
-            <div className="questions">
-
-            </div>
+                <Questions/>
         </section>
     );
 }

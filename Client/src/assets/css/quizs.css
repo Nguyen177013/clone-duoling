@@ -11,9 +11,8 @@
 .quiz__levels{
     margin: 0 auto;
     width: 630px;
-    height: 300vh;
+    height: 100vh;
     position: relative;
-    background: red;
     z-index: 1;
     /* display: none; */
 }

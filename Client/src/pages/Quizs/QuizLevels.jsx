@@ -1,10 +1,8 @@
 import "../../assets/css/Levels.css"
-import Levels from "../packet/Levels";
+import Levels from "../../components/packet/Levels";
 const QuizLevel = () => {
     return ( 
         <div className="quiz__levels wrap flex__column">
-            <Levels/>
-            <Levels/>
             <Levels/>
         </div>
      );
