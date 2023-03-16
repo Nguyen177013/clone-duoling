@@ -8,10 +8,6 @@ const Questions = new mongoose.Schema({
         type:["String"],
         required: true
     },
-    answer:{
-        type: "Number",
-        default:0
-    },
     type:{
         type:mongoose.SchemaTypes.ObjectId,
         required:true,

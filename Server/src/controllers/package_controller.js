@@ -1,10 +1,26 @@
-const PackageModel = require('../models/package_model');
+const PackageModel = require("../models/package_model");
 
 class PackageController {
-    async getAllPackages(req, res){
+    async getAllPackages(req, res) {
         let data = await PackageModel.find();
         res.json(data);
     }
+    async createPackage(req, res) {
+        const Package = new PackageModel({
+            title: req.body.title,
+            levels: [],
+        });
+        Package.save();
+        res.json(Package);
+    }
+    async addLevel(req, res) {
+        const addLevel = await PackageModel.findOneAndUpdate(
+            { _id: req.body._id },
+            { $push: { levels: req.body.id_Level } },
+            { new: true }
+        );
+        res.json(addLevel);
+    }
 }
 
-module.exports = new PackageController;
+module.exports = new PackageController();

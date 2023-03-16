@@ -10,7 +10,7 @@ userController.post(
         const password = req.body.password;
         const email = req.body.email;
         if (username == null || username == "") {
-            res.json({ message: "fail" });
+            res.json({ message: "Username is not empty" });
         } else {
             const checkEmail = await User.findOne({ email: email });
             const checkUsername = await User.findOne({ username: username });
