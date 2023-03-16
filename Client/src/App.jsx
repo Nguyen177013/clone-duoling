@@ -1,5 +1,5 @@
 import Layout from "./components/Laytout";
-import Question from "./pages/Questions/Question";
+import Questions from "./pages/Questions/Questions";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "./assets/css/app.css"
 
@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element ={<Layout/>}/>
-          <Route path="/learn/unit/:id" element ={<Question></Question>}/>
+          <Route path="/learn/unit/:id" element ={<Questions/>}/>
         </Routes>
       </div>
     </BrowserRouter>

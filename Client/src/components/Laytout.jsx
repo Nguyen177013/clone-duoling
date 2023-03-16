@@ -3,10 +3,10 @@ import Quizs from "../pages/Quizs/Quizs";
 
 const Layout = () => {
     return ( 
-        <>
+        <div className="Layout">
         <Navbar/>
         <Quizs/>
-        </>
+        </div>
      );
 }
  

@@ -1,15 +1,15 @@
-import Level from "./Level";
+import Packet from "./Packet";
 import pending from "../../assets/imgs/pending.gif";
 import { useEffect, useState } from "react";
-const Levels = (props) => {
-    const [levels, setLevels] = useState(null);
+const Packets = (props) => {
+    const [packets, setPackets] = useState(null);
     const [isPending, setPending] = useState(true);
     useEffect(() => {
         fetch("http://localhost:3000/api/packages/getPackage")
             .then(res => res.json())
             .then(data => {
                 setPending(false);
-                setLevels(data);
+                setPackets(data);
             })
         return function clean() {
 
@@ -21,11 +21,11 @@ const Levels = (props) => {
                 <h4 className="levels__pending">Please wait 
                 <img src={pending} alt="" className="pending__img" />
                 </h4>}
-            {levels && (
-                levels.map((level, index)=>(<Level key={level._id} {...level} index ={index}/>))
+            {packets && (
+                packets.map((packet, index)=>(<Packet key={packet._id} {...packet} index ={index}/>))
             )}
         </div>
     );
 }
 
-export default Levels;
+export default Packets;

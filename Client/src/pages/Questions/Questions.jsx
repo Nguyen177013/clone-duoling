@@ -1,43 +1,37 @@
 import "../../assets/css/questions.css"
-import { useEffect} from "react";
 import { Link } from "react-router-dom";
-const Questions = ({index}) => {
-    useEffect(() => {
-        const questions = document.querySelectorAll('.question');
-        questions.forEach((question, index) => {
-            switch (true) {
-                case index % 4 === 0:
-                    question.style.transform = "translateX(0)";
-                    break;
-                case index % 2 !== 0 && index < 5:
-                    question.style.transform = "translateX(-44px)";
-                    break;
-                case index % 2 === 0 && index < 5:
-                    question.style.transform = "translateX(-70px)";
-                    break;
-                case index % 2 !== 0 && index >= 5:
-                    question.style.transform = "translateX(44px)";
-                    break;
-                case index % 2 === 0 && index > 5:
-                    question.style.transform = "translateX(70px)";
-                    break;
-                default:
-                    question.style.transform = "translateX(0)";
-                    break;
-            }
-        })
-        return () => {
-        }
-    }, [])
+const Questions = () => {
     return (
-        <div className="questions flex__column align-item__center">
-            <div className="question question__first">
-                <div className="question__btn">
-                    <Link to="/learn/unit/1">
-                        <button>
-                            1
-                        </button>
+        <div className="questions">
+            <div className="questions__container">
+                <div className="questions__header flex align-item__center">
+                    <Link to="/">
+                        <button className="exit__btn">X</button>
                     </Link>
+                    <div className="status__bar"></div>
+                </div>
+                <div className="questions__body">
+                    <div className="questions flex__column align-item__center">
+                        <div className="question__title">
+                            <h1>
+                                <span>Làm sao để nói "trà" ?</span>
+                            </h1>
+                        </div>
+                        <div className="question__options ">
+                            <div className="option option__btn">
+                                <span>Tea</span>
+                            </div>
+                            <div className="option option__btn">
+                                <span>Tea</span>
+                            </div>
+                            <div className="option option__btn">
+                                <span>Tea</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="questions__footer">
+
                 </div>
             </div>
         </div>
