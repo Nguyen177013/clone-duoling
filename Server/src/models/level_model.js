@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Levels = new mongoose.Schema({
     user: {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: [mongoose.SchemaTypes.ObjectId],
         required: true,
         ref: "Users",
     },
@@ -15,4 +15,4 @@ const Levels = new mongoose.Schema({
         default: Date.now,
     },
 });
-mongoose.model("Levels", Levels);
+module.exports = mongoose.model("Levels", Levels);

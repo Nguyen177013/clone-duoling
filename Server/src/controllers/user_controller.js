@@ -10,16 +10,24 @@ userController.post(
         const password = req.body.password;
         const email = req.body.email;
         if (username == null || username == "") {
-            res.json({ message: "fail" });
+            res.json({ message: "Username is not empty" });
         } else {
-            try {
-                const salt = await bcrypt.genSalt(10);
-                const newPassword = await bcrypt.hash(password, salt);
-                req.username = username;
-                req.password = newPassword;
-                req.email = email;
-                next();
-            } catch (error) {}
+            const checkEmail = await User.findOne({ email: email });
+            const checkUsername = await User.findOne({ username: username });
+            if (checkEmail == null && checkUsername == null) {
+                try {
+                    const salt = await bcrypt.genSalt(10);
+                    const newPassword = await bcrypt.hash(password, salt);
+                    req.username = username;
+                    req.password = newPassword;
+                    req.email = email;
+                    next();
+                } catch (error) {}
+            } else {
+                return res.json({
+                    message: "Email or Username have been used",
+                });
+            }
         }
     },
     async (req, res) => {
@@ -29,8 +37,7 @@ userController.post(
             email: req.email,
         });
         user.save();
-        res.json(user);
-        // const check = await bcrypt.compare('password', req.password)
+        return res.json(user);
     }
 );
 
