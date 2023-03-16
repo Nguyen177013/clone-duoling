@@ -1,10 +1,6 @@
 const PackageModel = require("../models/package_model");
 
 class PackageController {
-    async getAllPackages(req, res) {
-        let data = await PackageModel.find();
-        res.json(data);
-    }
     async createPackage(req, res) {
         const Package = new PackageModel({
             title: req.body.title,
@@ -20,6 +16,10 @@ class PackageController {
             { new: true }
         );
         res.json(addLevel);
+    }
+    async getAllPackages(req, res) {
+        let data = await PackageModel.find();
+        res.json(data);
     }
 }
 
