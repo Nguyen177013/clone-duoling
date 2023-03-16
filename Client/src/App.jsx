@@ -1,19 +1,20 @@
-import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
-import Quizs from './components/Quizs/Quizs'
+import Quizs from './pages/Quizs/Quizs'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import "./assets/css/app.css"
 
 function App() {
   return (
-    <div className="App">
-        {/* Nav bar */}
+    <BrowserRouter>
+      <div className="App">
         <Navbar></Navbar>
-        {/* Main Quizs 
-          => Levels
-          =>Target ??        
-        */}
         <Quizs></Quizs>
-    </div>
+        <Routes>
+          <Route>
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 
