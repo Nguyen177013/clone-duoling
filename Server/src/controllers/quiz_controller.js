@@ -15,5 +15,8 @@ class QuizController {
         await questionModel.create(data);
         res.json("Thêm Thành công!");
     }
+    async initQuizs(){
+        
+    }
 }
 module.exports = new QuizController;

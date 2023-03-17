@@ -4,10 +4,16 @@ const Questions = new mongoose.Schema({
         type: 'String',
         required: true
     },
-    options:{
-        type:["Object"],                
-        required: true
-    },
+    options:[{
+        option:{
+            type:"String",
+            required: true
+        },
+        result:{
+            type:"Boolean",
+            required: true
+        }  
+    }],
     type:{
         type:mongoose.SchemaTypes.ObjectId,
         required:true,
