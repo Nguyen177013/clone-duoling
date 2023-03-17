@@ -3,6 +3,18 @@
     max-width: 630px;
     flex: 1;
 }
+.levels__pending{
+    margin-top: 3rem;
+    font-size: 34px;
+    position: relative;
+    display: inline-block;
+}
+.pending__img{
+    width: 70px;
+    position: absolute;
+    right: -60px;
+    top: 0;
+}
 .quiz__levels__header{
     background-size: 100% 100%;
     border-radius: 13px;
@@ -42,4 +54,47 @@
     padding: 16px;
     position: relative;
     row-gap: 3px;
+}
+.level{
+    margin-top: 10px;
+}
+.level__first{
+    margin-top: 67px;
+}
+.level__btn{
+    margin: 14px;
+}
+.level__btn button{
+    background: none;
+    border: none;
+    transition: filter .2s;
+    background-color: #1cb0f6;
+    height: 65px;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 30px;
+    position: relative;
+    width: 70px;
+    z-index: 0;
+    cursor: pointer;
+}
+.level__btn button::before{
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+.level__btn button::after
+{    
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    background: #1cb0f6;
+    border-radius: 10px;
+    box-shadow: 0 8px 0 rgb(0, 0 ,0 ,.2),0 8px 0 #1782b3;
+    height: 57px;
+    top: 0;
 }

@@ -13,4 +13,4 @@ const Packages = new mongoose.Schema(
     },
     { timestamps: true }
 );
-module.exports = mongoose.model("Packages", Packages);
+module.exports = mongoose.model("packages", Packages);
