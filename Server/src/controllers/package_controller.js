@@ -25,7 +25,7 @@ class PackageController {
                 model:"questions"
             }
         })
-        res.json({data:data});
+        res.json(data);
     }
 }
 
