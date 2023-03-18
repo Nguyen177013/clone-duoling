@@ -7,10 +7,8 @@ class typeController{
     }
 
     async createType(req, res){
-        const type = new TypeModel({
-            type_name : req.body.type_name,
-        });
-        type.save();
+        const type = req.body;
+        await TypeModel.create(type);
         res.json(type);
     }
 }

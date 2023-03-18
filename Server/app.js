@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const initialize = require("./src/utils/initialize");
-const database = require("./src/utils/database");
+// const database = require("./src/utils/database");
 const port = process.env.PORT;
 const mainRouter = require("./src/routes/main_route");
 
@@ -22,10 +22,10 @@ app.use("/api/packages", mainRouter.packages);
 
 
 initialize().then(()=>{
-    database();
     app.listen(port, () => {
         console.log(`Server is listening on port ${port}`);
     })
+    database();
 }).catch(ex=>{
-    console.log(ex.message);
+    // console.log(ex.message);
 });
