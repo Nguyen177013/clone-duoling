@@ -5,7 +5,7 @@ const Packets = (props) => {
     const [packets, setPackets] = useState(null);
     const [isPending, setPending] = useState(true);
     useEffect(() => {
-        fetch("http://localhost:3000/api/packages/getPackage")
+        fetch("http://localhost:3000/api/packages/getLevels")
             .then(res => res.json())
             .then(data => {
                 setPending(false);

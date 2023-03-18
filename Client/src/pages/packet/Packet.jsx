@@ -7,7 +7,7 @@ const Packet = (props) => {
                 <h1 className="quiz__levels__header__title">State {props.index +1}:</h1>
                 <span className="quiz__levels__header__des">{props.title}</span>
             </header>
-                <Levels />
+                <Levels index ={props.index}/>
         </section>
     );
 }

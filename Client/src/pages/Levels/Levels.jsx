@@ -2,7 +2,7 @@ import { useEffect} from "react";
 import { Link } from "react-router-dom";
 const Levels = ({index}) => {
     useEffect(() => {
-        const levels = document.querySelectorAll('.level');
+        const levels = document.querySelectorAll(`.level-${index}`);
         levels.forEach((level, index) => {
             switch (true) {
                 case index % 4 === 0:
@@ -30,7 +30,7 @@ const Levels = ({index}) => {
     }, [])
     return (
         <div className="levels flex__column align-item__center">
-            <div className="level question__first">
+            <div className={`level-${index} question__first`}>
                 <div className="level__btn">
                     <Link to="/learn/unit/1">
                         <button>

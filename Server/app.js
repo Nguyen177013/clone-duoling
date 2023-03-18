@@ -4,8 +4,9 @@ const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const initialize = require("./src/utils/initialize");
-// const database = require("./src/utils/database");
+const database = require("./src/utils/database");
 const port = process.env.PORT;
+const database = require("./src/utils/database");
 const mainRouter = require("./src/routes/main_route");
 
 //set up the Server middleware
@@ -27,5 +28,5 @@ initialize().then(()=>{
     })
     database();
 }).catch(ex=>{
-    // console.log(ex.message);
+    console.log(ex.message);
 });
