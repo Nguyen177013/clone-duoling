@@ -1,0 +1,11 @@
+.auth__layout{
+    height: 100vh;
+    padding: 25px;
+}
+.auth__form{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

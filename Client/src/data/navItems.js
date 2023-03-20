@@ -9,7 +9,8 @@ export default [
     },
     {
         name:"Profile",
-        iconImage: "https://d35aaqx5ub95lt.cloudfront.net/vendor/0e58a94dda219766d98c7796b910beee.svg"
+        iconImage: "https://d35aaqx5ub95lt.cloudfront.net/vendor/0e58a94dda219766d98c7796b910beee.svg",
+        url:"http://127.0.0.1:5173/auth"
     },
     {
         name:"Blogs",

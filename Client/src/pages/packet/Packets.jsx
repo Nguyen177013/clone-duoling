@@ -22,7 +22,7 @@ const Packets = (props) => {
                 <img src={pending} alt="" className="pending__img" />
                 </h4>}
             {packets && (
-                packets.map((packet, index)=>(<Packet key={packet._id} {...packet} index ={index}/>))
+                packets.data.map((packet, index)=>(<Packet key={packet._id} {...packet} index ={index}/>))
             )}
         </div>
     );
