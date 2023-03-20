@@ -10,6 +10,7 @@ class authController {
         const { username, password } = req.body;
         try {
             const user = await User.login(username, password);
+            console.log("this is user: "+user);
             //   create token
             const token = createToken(user._id);
             res.status(200).json({ user: user.username, token });

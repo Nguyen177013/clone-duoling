@@ -10,8 +10,8 @@ const mainRouter = require("./src/routes/main_route");
 
 //set up the Server middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/api/questions", mainRouter.questions);

@@ -1,6 +1,5 @@
 import Levels from "../Levels/Levels";
 const Packet = (props) => {
-    console.log(props);
     return (
         <section>
             <header className="quiz__levels__header primary__header__design">
