@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import Quizs from "../pages/Quizs/Quizs";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Layout = () => {
     return ( 

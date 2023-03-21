@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import * as actions from "../context/authReducer/action";
-import { authContext } from "../context/authReducer/authContext";
+import { AuthContext } from "../context/authReducer/authContext";
 export default function useLogin(){
     const [errors, setErrors] = useState(null);
     const [isLoading, setLoading] = useState(null);
-    const {dispatch} = useContext(authContext);
+    const {dispatch} = useContext(AuthContext);
     const login = async (url, username, password, email ="") => {
         setLoading(true);
         setErrors(null);
