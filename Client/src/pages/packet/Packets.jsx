@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/authReducer/authContext";
 const Packets = (props) => {
     const {state} = useContext(AuthContext);
     const {token} = state.user;
-    console.log(token);
     const [packets, setPackets] = useState(null);
     const [isPending, setPending] = useState(true);
     useEffect(() => {
