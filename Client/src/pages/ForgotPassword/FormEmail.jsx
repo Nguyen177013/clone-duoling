@@ -11,7 +11,7 @@ const FormEmail = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         setPending(true);
-        const req = await fetch("http://localhost:3000/api/users/reset-password", {
+        const req = await fetch("http://localhost:3000/api/users/sendmail", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ email })

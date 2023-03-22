@@ -53,16 +53,31 @@ class authController {
                 },
             });
             await transporter.sendMail({
-                from: '"Fred Foo 👻" <ngocsieukibo@gmail.com>', // sender address
+                from: '"Duolingo Fake" <ngocsieukibo@gmail.com>', // sender address
                 to: `${email}`, // list of receivers
-                subject: "Hello ✔", // Subject line
-                text: "Hello world?", // plain text body
-                html: "<b>Hello world?</b>", // html body
-              });
-              res.status(200).json({mssg:"Please check your email"});
+                subject: "🔑", // Subject line
+                text: "Password Reset", // plain text body
+                html: `<h1>Hello ${isContain?.username}</h1> 
+                <br/>
+                <div>
+                <p>Forgot your password? Let's set up a new one!</p>
+                <a href=http://127.0.0.1:5173/reset-password/change-password?id=${isContain._id}&username=${isContain.username}&email=${isContain.email}>Reset Password</a>
+                </div>`, // html body
+            });
+            res.status(200).json({ mssg: "Please check your email" });
         }
         catch (err) {
             res.status(401).json({ error: err.message });
+        }
+    }
+    async changePassword(req, res){
+        const {id, password} = req.body;
+        try{
+            console.log({id, password});
+            await User.updatePassword(id, password);
+            res.status(200).json({mssg:"your password has been updated"});
+        }catch(err){
+            res.status(401).json({error: err.message});
         }
     }
 }

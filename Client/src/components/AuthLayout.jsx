@@ -21,11 +21,6 @@ const AuthLayout = () => {
         <>
             <div className="auth__layout">
                 <div className="auth__form">
-                    <Link to ="http://127.0.0.1:5173/">
-                        <div className="form__exit">
-                            <img src="https://d35aaqx5ub95lt.cloudfront.net/images/577b23547c1fc5bd95934c7d90f02f4d.svg" alt="" />
-                        </div>
-                    </Link>
                     <Outlet />
                     <Link to={authBtn.url}>
                         <div className="form__change">

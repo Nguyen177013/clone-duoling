@@ -5,9 +5,9 @@ import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 import AuthLayout from "./components/AuthLayout";
 import { useAuthContext } from "./hooks/useAuthContext";
-import ResetLayout from "./pages/ForgotPassword/ResetLayout";
+import ResetLayout from "./components/ResetLayout";
 import FormEmail from "./pages/ForgotPassword/FormEmail";
-
+import FormReset from "./pages/ForgotPassword/FormReset";
 
 
 import "./assets/css/app.css"
@@ -21,6 +21,7 @@ function App() {
           <Route path="/learn/unit/:id" element={<Questions />} />
           <Route path ="/reset-password" element={<ResetLayout/>}>
             <Route index element = {<FormEmail/>}/>
+            <Route path="change-password" element = {<FormReset/>}/>
           </Route>
           <Route path="auth" element={!state.user ? <AuthLayout /> : <Navigate to="/" />}>
             <Route index element={<Login />} />

@@ -71,6 +71,7 @@ form{
     text-align: center;
 }
 .form__input{
+    position: relative;
 }
 .form__input input{
     margin: 8px 0;
@@ -150,4 +151,18 @@ form{
     top: 0;
     left: 0;
     border-radius: 7px;
+}
+.forget__password{
+    position: absolute;
+    right: 13px;
+    bottom: 13px;
+    cursor: pointer;
+}
+.forget__password span {
+    font-weight: bold;
+    color: #16a7ead7;
+    transition: 0.2s;
+}
+.forget__password span:hover{
+    color: #1782b3;
 }

@@ -9,5 +9,6 @@ userRouter.post("/checkUser", userController);
 
 userRouter.post("/signup",authController.authSignup);
 userRouter.post("/login",authController.authLogin);
-userRouter.post("/reset-password",authController.sendMail);
+userRouter.post("/sendmail",authController.sendMail);
+userRouter.post("/reset-password",authController.changePassword);
 module.exports = userRouter;

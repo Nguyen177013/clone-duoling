@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 import pending from "../../assets/imgs/pending.gif";
 
@@ -19,6 +20,7 @@ const Login = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <h1>Login</h1>
+                {errors && <div className="error">{errors}</div>}
                 <div className="form__input">
                     <input
                         type="text"
@@ -35,6 +37,11 @@ const Login = () => {
                         value={input.input}
                         onChange={handleChange}
                     />
+                    <Link to="/reset-password">
+                        <div className="forget__password">
+                            <span>Forgot password</span>
+                        </div>
+                    </Link>
                 </div>
                 <div className="form__submit">
                     <button> Login{isLoading ? <img src={pending} alt="" className="pending__fetching" /> : ""}</button>
