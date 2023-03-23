@@ -1,12 +1,11 @@
 import Navbar from "../components/Navbar/Navbar";
-import Quizs from "../pages/Quizs/Quizs";
 import { useAuthContext } from "../hooks/useAuthContext";
-
+import { Outlet } from "react-router-dom";
 const Layout = () => {
     return ( 
         <div className="Layout">
         <Navbar/>
-        <Quizs/>
+        <Outlet/>
         </div>
      );
 }

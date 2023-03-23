@@ -10,7 +10,7 @@ const Packets = (props) => {
     const [isPending, setPending] = useState(true);
     useEffect(() => {
         fetch("http://localhost:3000/api/packages/getLevels", {
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: {"Authorization": `Bearer ${token}` }
         })
             .then(res => res.json())
             .then(data => {

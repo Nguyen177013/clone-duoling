@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 
 
 function createToken(_id) {
-    return jwt.sign({ _id }, process.env.TOKENSECRET, { expiresIn: "3d" });
+    return jwt.sign({ _id }, process.env.TOKENSECRET, { expiresIn: "3d"});
 }
 class authController {
     // login
@@ -21,7 +21,6 @@ class authController {
             res.status(401).json({ error: err.message });
         }
     }
-
     // signup
     async authSignup(req, res) {
         const { username, email, password } = req.body;
