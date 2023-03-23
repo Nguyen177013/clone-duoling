@@ -18,13 +18,14 @@ class PackageController {
         res.json(addLevel);
     }
     async getLevel(req, res){
-        let data = await PackageModel.find({}).populate({
-            path:"levels",
-            populate:{
-                path:"questions",
-                model:"questions"
-            }
-        })
+        // let data = await PackageModel.find({}).populate({
+        //     path:"levels",
+        //     populate:{
+        //         path:"questions",
+        //         model:"questions"
+        //     }
+        // })
+        let data = await PackageModel.find({}).populate('levels');
         res.json(data);
     }
 }
