@@ -6,18 +6,22 @@ class BlogController {
         res.json({ blogs: data });
     }
     async createBlog(req, res) {
-        const { title, snipet, body } = req.body;
-        const userId = req.user;
-        if (!userId) {
+        const { title, snippet, body } = req.body;
+        const user = await req.user;
+        if (!user) {
             res.status(401).json({ error: "Please login before creating blog" });
         }
         try {
-            await blogsModel.create({ title, snipet, body });
+            const blogUser = {
+                userId: user._id,
+                userName: user.username,
+            }
+            console.log(blogUser);
+            await blogsModel.create({ title, snippet, body, user:blogUser });
             res.json({ mssg: "Blog has been created" });
         } catch (err) {
             res.status(400).json({ error: err.message });
         }
-        res.json({ title, snipet, body });
     }
 }
 

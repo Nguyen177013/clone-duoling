@@ -6,7 +6,9 @@ const Packet = (props) => {
                 <h1 className="quiz__levels__header__title">State {props.index +1}:</h1>
                 <span className="quiz__levels__header__des">{props.title}</span>
             </header>
-                <Levels index ={props.index}/>
+            {props.levels.map(level =>(
+                <Levels index ={props.index} key = {level._id}/>
+            ))}
         </section>
     );
 }

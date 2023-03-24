@@ -10,7 +10,7 @@ import Quizs from "./pages/Quizs/Quizs";
 import FormEmail from "./pages/ForgotPassword/FormEmail";
 import FormReset from "./pages/ForgotPassword/FormReset";
 import Blogs from "./pages/Blogs/Blogs";
-
+import BlogCreate from "./pages/Blogs/BlogCreate";
 import "./assets/css/app.css"
 function App() {
   const { state } = useAuthContext();
@@ -21,7 +21,10 @@ function App() {
           <Route path="/" element={state.user ? <Layout /> : <Navigate to="auth" />}>
             <Route index element={<Quizs />} />
             <Route path="learn/unit/:id" element={<Questions />} />
-            <Route path="/blogs" element={<Blogs />} />
+            <Route path="blogs" >
+              <Route index element={<Blogs/>}></Route>
+              <Route path="create" element ={<BlogCreate/>}></Route>
+            </Route>
           </Route>
           <Route path="/reset-password" element={<ResetLayout />}>
             <Route index element={<FormEmail />} />

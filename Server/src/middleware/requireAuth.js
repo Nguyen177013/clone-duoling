@@ -8,7 +8,7 @@ const requireAuth = (req, res, next)=>{
     const token = authorization.split(" ")[1];
     try{
         const id = jwt.verify(token, process.env.TOKENSECRET);
-        req.user = userModel.findOne({_id:id},{_id:1});
+        req.user = userModel.findOne({_id:id},{_id:1,username:1});
         next();
     }
     catch(err){

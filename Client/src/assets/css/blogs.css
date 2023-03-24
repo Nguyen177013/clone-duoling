@@ -53,3 +53,10 @@ article:hover{
     font-style: italic;
     padding-top: 18px;
 }
+.ck.ck-editor {
+    position: relative;
+    margin-top: 17px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}

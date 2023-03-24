@@ -34,7 +34,7 @@ const Levels = ({index}) => {
                 <div className="level__btn">
                     <Link to="/learn/unit/1">
                         <button>
-                            1
+                            {index}
                         </button>
                     </Link>
                 </div>

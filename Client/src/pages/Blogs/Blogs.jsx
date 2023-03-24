@@ -1,11 +1,14 @@
-import "../../assets/css/blogs.css"
-import TextEditor from "../../../ckeditor5/TextEditor";
+import "../../assets/css/blogs.css";
+import { Link } from "react-router-dom";
+
 const Blogs = () => {
     return (
         <div className="blogs__content">
-            <div className="blog__create">
-                <button>Add Blogs</button>
-            </div>
+            <Link to="create">
+                <div className="blog__create">
+                    <button>Add Blogs</button>
+                </div>
+            </Link>
             <div className="blogs__feed">
                 <article>
                     <a href="">
@@ -53,7 +56,6 @@ const Blogs = () => {
                     </a>
                 </article>
             </div>
-            <TextEditor/>
         </div>
     );
 }
