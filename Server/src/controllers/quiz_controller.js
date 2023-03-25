@@ -8,7 +8,7 @@ class QuizController {
     async getQuiz(req, res){
         let quizId = req.params.id;
         let data = await questionModel.findById(quizId);
-        req.json(data);
+        res.json(data);
     }
     async createQuiz(req, res){
         const data = req.body;

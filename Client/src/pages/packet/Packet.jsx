@@ -7,7 +7,7 @@ const Packet = (props) => {
                 <span className="quiz__levels__header__des">{props.title}</span>
             </header>
             {props.levels.map(level =>(
-                <Levels index ={props.index} key = {level._id}/>
+                <Levels index ={props.index} key = {level._id} other = {level}/>
             ))}
         </section>
     );
