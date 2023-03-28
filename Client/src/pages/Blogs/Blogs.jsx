@@ -1,7 +1,21 @@
 import "../../assets/css/blogs.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/authReducer/authContext";
+import { formatDistanceToNow} from 'date-fns'
 
 const Blogs = () => {
+    const [blogs, setBlogs] = useState(null);
+    const { state } = useContext(AuthContext);
+    const { token } = state.user;
+    useEffect(() => {
+        fetch("http://localhost:3000/api/blog/get-blogs", {
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+            .then(res => res.json())
+            .then(data => setBlogs(data));
+    }, []);
+    console.log(blogs);
     return (
         <div className="blogs__content">
             <Link to="create">
@@ -10,51 +24,23 @@ const Blogs = () => {
                 </div>
             </Link>
             <div className="blogs__feed">
-                <article>
-                    <a href="">
-                        <div className="blog__content">
-                            <div className="blog__timepost">
-                                <span>March 23, 2023</span>
+                {blogs && blogs.blogs.map(blog => (
+                    <article key={blog._id}>
+                        <Link to ={`blog/${blog._id}`}>
+                            <div className="blog__content">
+                                <div className="blog__timepost">
+                                    <span>{formatDistanceToNow(new Date(blog.createdAt), { addSuffix: true })}</span>
+                                </div>
+                                <h2 className="blog__title">
+                                    {blog.title}
+                                </h2>
+                                <div className="blog__author">
+                                    <span>by {blog.user.userName}</span>
+                                </div>
                             </div>
-                            <h2 className="blog__title">
-                                How to use movies and TV to practice your language
-                            </h2>
-                            <div className="blog__author">
-                                <span>by Hoang Ngoc Phuc</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <article>
-                    <a href="">
-                        <div className="blog__content">
-                            <div className="blog__timepost">
-                                <span>March 23, 2023</span>
-                            </div>
-                            <h2 className="blog__title">
-                                Interning with Duolingo: bringing our characters to a new dimension
-                            </h2>
-                            <div className="blog__author">
-                                <span>by Hoang Ngoc Phuc</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
-                <article>
-                    <a href="">
-                        <div className="blog__content">
-                            <div className="blog__timepost">
-                                <span>March 23, 2023</span>
-                            </div>
-                            <h2 className="blog__title">
-                                Uncover a mysterious Chilean shipwreck with the Duolingo Spanish Podcast lo
-                            </h2>
-                            <div className="blog__author">
-                                <span>by Hoang Ngoc Phuc</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
+                        </Link>
+                    </article>
+                ))}
             </div>
         </div>
     );

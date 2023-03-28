@@ -98,3 +98,33 @@
     height: 57px;
     top: 0;
 }
+.level__btn .hasdone{
+    background: #05e309;
+}
+.level__btn .hasdone::after{
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    background: #05e309;
+    border-radius: 10px;
+    box-shadow: 0 8px 0 rgb(0, 0 ,0 ,.2),0 8px 0 #03910c;
+    height: 57px;
+    top: 0;
+}
+.level__btn .disabled{
+    background-color: #ccc;
+}
+.level__btn .disabled::after{
+    background-color: #ccc;
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    box-shadow: 0 8px 0 rgb(0, 0 ,0 ,.2),0 8px 0 #646564;
+    height: 57px;
+    top: 0;
+}

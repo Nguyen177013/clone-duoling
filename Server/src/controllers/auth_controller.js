@@ -1,10 +1,25 @@
 const User = require("../models/user_model");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const passport = require('passport');
+const googleStrategy = require('passport-google-oauth2').Strategy;
+
+// setup google passport
+passport.use('google', new googleStrategy({
+    clientID: process.env.google_api_key,
+    clientSecret: process.env.google_api_secret,
+    callbackURL: process.env.google_callback,
+    passReqToCallback: true
+},
+    function (req, accessToken, refreshToken, profile, done) {
+        return done(null, profile);
+    }
+));
 
 
+// create user secret token
 function createToken(_id) {
-    return jwt.sign({ _id }, process.env.TOKENSECRET, { expiresIn: "3d"});
+    return jwt.sign({ _id }, process.env.TOKENSECRET, { expiresIn: "3d" });
 }
 class authController {
     // login
@@ -15,7 +30,7 @@ class authController {
             console.log("this is user: " + user);
             //   create token
             const token = createToken(user._id);
-            res.status(200).json({ user: user.username, token });
+            res.status(200).json({ user: user.username, token, _id: user.id });
         }
         catch (err) {
             res.status(401).json({ error: err.message });
@@ -30,12 +45,46 @@ class authController {
             //   create token
             const token = createToken(user._id);
 
-            res.status(200).json({ user: user.username, token });
+            res.status(200).json({ user: user.username, token, _id: user.id });
         }
         catch (err) {
             res.status(401).json({ error: err.message });
         }
     }
+    // login Facebook 
+
+    // login Google 
+    googleLogin(req, res, next) {
+        passport.authenticate('google', { failureRedirect: 'http://127.0.0.1:5173/auth', failureMessage: true },
+            async function (err, user, info) {
+                const username = user.displayName;
+                const email = user.email;
+                try {
+                    const check = await User.findOne({email});
+                    let user ;
+                    if(!check){
+                        user = await User.signup(username, email, "ahihihihihi123");
+                    }
+                    else{
+                        user = check;
+                    }
+                    const token = createToken(user._id);
+                    req.app.local = { user: user.username, token, _id: user.id };
+                    res.send("<script>window.close()</script>");
+                }
+                catch (err) {
+                    res.json({ mggs: err.message })
+                }
+
+            })(req, res, next);
+    }
+    // google success
+
+    googleSuccess(req, res){
+            const userData = req.app.local
+            res.json(userData);
+    }
+    // send email - forgot password
     async sendMail(req, res) {
         const { email } = req.body;
         try {
@@ -69,14 +118,15 @@ class authController {
             res.status(401).json({ error: err.message });
         }
     }
-    async changePassword(req, res){
-        const {id, password} = req.body;
-        try{
-            console.log({id, password});
+    //  change user password 
+    async changePassword(req, res) {
+        const { id, password } = req.body;
+        try {
+            console.log({ id, password });
             await User.updatePassword(id, password);
-            res.status(200).json({mssg:"your password has been updated"});
-        }catch(err){
-            res.status(401).json({error: err.message});
+            res.status(200).json({ mssg: "your password has been updated" });
+        } catch (err) {
+            res.status(401).json({ error: err.message });
         }
     }
 }

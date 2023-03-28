@@ -31,5 +31,12 @@ export default function useLogin(){
             setLoading(false);
         }
     }
-    return{errors, login, isLoading};
+    const googleAuth = async ()=>{
+        const res = await fetch("http://localhost:3000/api/users/google/success");
+        const json = await res.json();
+        localStorage.setItem('user', JSON.stringify(json));
+        dispatch(actions.authLogin(json));
+        window.location.reload();
+    }
+    return{errors, login, isLoading, googleAuth};
 }

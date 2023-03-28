@@ -1,12 +1,14 @@
 import "../../assets/css/authIndex.css";
 import { useState } from "react";
 import useBlog from "../../hooks/useBlog";
+import { useNavigate } from "react-router-dom";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import pending from "../../assets/imgs/pending.gif";
 
 
 const BlogCreate = () => {
+    const navigate = useNavigate();
     const { errors, postBlog, isLoading } = useBlog();
     const [input, setInput] = useState({ title: "", snippet: "", body: "" });
     function handleChange(e, editor) {
@@ -19,6 +21,7 @@ const BlogCreate = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         await postBlog("http://localhost:3000/api/blog/create-blog", input.title, input.snippet, input.body);
+        navigate("blogs");
     }
     return (
         <div className="auth__layout">

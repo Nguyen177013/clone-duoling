@@ -11,9 +11,9 @@ const mainRouter = require("./src/routes/main_route");
 //set up the Server middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(cookieParser());
 
+app.use(cors());
 app.use("/api/questions", mainRouter.questions);
 app.use("/api/levels", mainRouter.levels);
 app.use("/api/users", mainRouter.users);

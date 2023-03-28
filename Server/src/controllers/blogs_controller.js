@@ -5,6 +5,11 @@ class BlogController {
         const data = await blogsModel.find();
         res.json({ blogs: data });
     }
+    async getBlog(req, res) {
+        const blogId = req.params.id;
+        const data = await blogsModel.findById(blogId);
+        res.json(data);
+    }
     async createBlog(req, res) {
         const { title, snippet, body } = req.body;
         const user = await req.user;

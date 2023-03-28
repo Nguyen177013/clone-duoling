@@ -5,6 +5,7 @@ const requireAuth = require("../middleware/requireAuth");
 
 BlogRoute.use(requireAuth);
 
-BlogRoute.post('/get-blogs', blogController.getAllBlogs);
+BlogRoute.get('/get-blogs', blogController.getAllBlogs);
+BlogRoute.get('/get-blog/:id', blogController.getBlog);
 BlogRoute.post('/create-blog', blogController.createBlog);
 module.exports = BlogRoute;
