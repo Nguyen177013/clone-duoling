@@ -15,7 +15,6 @@ const Blogs = () => {
             .then(res => res.json())
             .then(data => setBlogs(data));
     }, []);
-    console.log(blogs);
     return (
         <div className="blogs__content">
             <Link to="create">
@@ -26,7 +25,7 @@ const Blogs = () => {
             <div className="blogs__feed">
                 {blogs && blogs.blogs.map(blog => (
                     <article key={blog._id}>
-                        <Link to ={`blog/${blog._id}`}>
+                        <Link to ={`/blogs/blog/${blog._id}`}>
                             <div className="blog__content">
                                 <div className="blog__timepost">
                                     <span>{formatDistanceToNow(new Date(blog.createdAt), { addSuffix: true })}</span>

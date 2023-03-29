@@ -3,10 +3,14 @@ const userController = require("../controllers/user_controller");
 const authController = require("../controllers/auth_controller");
 const userRouter = express.Router();
 const passport = require("passport");
+const upload = require("../middleware/multer");
+const requireAuth = require("../middleware/requireAuth");
 
+
+userRouter.get("/user/:id",userController);
+userRouter.post("/user/:id",requireAuth,upload.single("file"),userController);
 userRouter.post("/create", userController);
 userRouter.post("/checkUser", userController);
-
 userRouter.post("/signup",authController.authSignup);
 userRouter.post("/login",authController.authLogin);
 

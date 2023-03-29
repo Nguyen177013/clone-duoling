@@ -63,7 +63,7 @@ class authController {
                     const check = await User.findOne({email});
                     let user ;
                     if(!check){
-                        user = await User.signup(username, email, "ahihihihihi123");
+                        user = await User.signup(username, email, "thisisaverrysecretpasswordwhichisverrysafeandverryandsupdupderlongsopleasedonothackthis");
                     }
                     else{
                         user = check;

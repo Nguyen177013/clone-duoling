@@ -18,6 +18,10 @@ const User = new mongoose.Schema(
             type: String,
             required: true,
         },
+        image: {
+            id: String,
+            img_url: String
+        },
         isOld: {
             type: Boolean,
             default: false,

@@ -1,6 +1,5 @@
 import "../../assets/css/questions.css"
-import { useLocation } from 'react-router-dom';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import speaker from "../../assets/imgs/speaker.png"
 import useLevelsUser from "../../hooks/useLevelsUser";
@@ -49,7 +48,7 @@ const Questions = () => {
             answer: answer
         }));
     }
-    function handleTexttoSpeech(text){
+    function handleTexttoSpeech(text) {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
@@ -93,7 +92,7 @@ const Questions = () => {
                             <div className="question__title">
                                 <h1>
                                     {questions[currentQuestion].type.type_name === "Listenning" ?
-                                        (<img src={speaker} alt="" onClick={()=>handleTexttoSpeech(questions[currentQuestion].question)}/>)
+                                        (<img src={speaker} alt="" onClick={() => handleTexttoSpeech(questions[currentQuestion].question)} />)
                                         :
                                         (<span>{questions[currentQuestion].question}</span>)}
                                 </h1>

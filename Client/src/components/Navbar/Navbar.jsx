@@ -1,7 +1,10 @@
 import NavItems from "../Navbar/NavItems";
 import navItems from "../../data/navItems";
+import { AuthContext } from "../../context/authReducer/authContext";
+import { useContext } from "react";
 import "../../assets/css/navBar.css";
 const Navbar = (props) => {
+    const a = useContext(AuthContext);
     return ( 
         <div className="quiz__navbar border__right__fullHeight fixed__left">
             <div className="quiz__logo">
@@ -11,9 +14,7 @@ const Navbar = (props) => {
             </div>
             <div className="quiz__navitems">
                 {navItems.map(item=>{
-                    return item.name==="Learn"? 
-                    <NavItems {...item} key ={item.name} status = "item__selected"/>:
-                    <NavItems {...item} key ={item.name}/>
+                    return <NavItems {...item} key ={item.name}/>
                 })}
             </div>
         </div>

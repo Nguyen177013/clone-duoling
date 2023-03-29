@@ -12,6 +12,7 @@ import FormReset from "./pages/ForgotPassword/FormReset";
 import Blogs from "./pages/Blogs/Blogs";
 import BlogCreate from "./pages/Blogs/BlogCreate";
 import BlogDetail from "./pages/Blogs/BlogDetail";
+import UserDetail from "./pages/User/UserDetail";
 import "./assets/css/app.css"
 function App() {
   const { state } = useAuthContext();
@@ -27,6 +28,7 @@ function App() {
               <Route path="create" element ={<BlogCreate/>}></Route>
               <Route path="blog/:id" element ={<BlogDetail/>} />
             </Route>
+            <Route path ="user/:id" element={<UserDetail/>}/>
           </Route>
           <Route path="/reset-password" element={<ResetLayout />}>
             <Route index element={<FormEmail />} />
