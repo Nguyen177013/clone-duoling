@@ -28,6 +28,16 @@ class BlogController {
             res.status(400).json({ error: err.message });
         }
     }
+    async removeBlog(req, res){
+        const blogId = req.params.id;
+        try{
+            await blogsModel.findByIdAndRemove(blogId);
+            res.status(200).json({ mssg: "Blog has been deleted" });
+        }
+        catch(err){
+            res.status(406).json({ error: err.message });
+        }
+    }
 }
 
 module.exports = new BlogController;

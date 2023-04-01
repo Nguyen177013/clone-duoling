@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { formatDistanceToNow } from 'date-fns'
 import { AuthContext } from "../../context/authReducer/authContext";
@@ -6,10 +6,11 @@ import { AuthContext } from "../../context/authReducer/authContext";
 
 
 const BlogDetail = () => {
+    const navigate = useNavigate();
     const { id: blogId } = useParams();
     const [blog, setBlog] = useState(null);
     const { state } = useContext(AuthContext);
-    const { token } = state.user;
+    const { token, _id } = state.user;
     const [modalStatus, setModalStatus] = useState(false);
     useEffect(() => {
         fetch(`http://localhost:3000/api/blog/get-blog/${blogId}`,
@@ -23,6 +24,20 @@ const BlogDetail = () => {
             })
             .catch(err => console.error(err));
     }, [])
+    async function handleRemove(){
+        const res = await fetch(`http://localhost:3000/api/blog/remove-blog/${blogId}`,{
+            method:"POST",
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+        const json = await res.json();
+        console.log(json);
+        if(json.error){
+            alert("Blog can not delete")
+        }
+        else{
+            navigate("/blogs")
+        }
+    }
     return (
 
         <div className="blogs__content">
@@ -31,18 +46,18 @@ const BlogDetail = () => {
                     <div
                         className="confirm__modal"
                         style = {modalStatus ? {display:"flex"}:{}}
-                    >
+                        >
                         <div className="confirm__container">
                             <h2>This blog can not restore after remove it</h2>
                             <p>Do you want to remove it ?</p>
                             <div className="confirm__button">
-                                <button className="confirm__btn">Yes</button>
+                                <button className="confirm__btn" onClick={handleRemove}>Yes</button>
                                 <button className="refuse__btn" onClick={() => setModalStatus(false)}>No</button>
                             </div>
                         </div>
                     </div>
                     <div className="blog__container">
-                        <div className="blog__options">
+                        <div className="blog__options" style={(_id === blog.user.userId)? {display:"block"}:{display:"none"}}>
                             <div className="btn__edit">
                                 <button>Edit Blog</button>
                             </div>
