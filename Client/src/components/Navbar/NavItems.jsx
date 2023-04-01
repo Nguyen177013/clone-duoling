@@ -8,8 +8,8 @@ const NavItems = (props) => {
         //     color: #1cb0f6;
         <div className={props.status || "uft"}>
             <NavLink
-                to={props.url =='user'? props.url+`/${_id}` : props.url}
-                className={({isActive})=>isActive?"nav__item item__selected":"nav__item"}
+                to={(props.url =='user' || props.index === 3)? props.url+`/${_id}` : props.url}
+                className={({isActive})=>(isActive)?"nav__item item__selected":"nav__item"}
                 >
                 <span className="item">
                     <div className="item__icon">
@@ -17,7 +17,9 @@ const NavItems = (props) => {
                     </div>
                     <span
                         className={"item__name"}
-                        style={props.status ? { backgroundColor: "#1cb0f6" } : {}}
+                        onClick={()=>{
+                            console.log("hehe");
+                        }}
                     >
                         {props.name}
                     </span>

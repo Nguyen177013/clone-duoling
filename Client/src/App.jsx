@@ -16,6 +16,7 @@ import UserDetail from "./pages/User/UserDetail";
 import "./assets/css/app.css"
 function App() {
   const { state } = useAuthContext();
+  console.log(state);
   return (
     <BrowserRouter>
       <div className="App">

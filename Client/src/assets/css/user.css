@@ -15,7 +15,7 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-
+    object-fit: cover;
 }
 .user__change__image{
     position: absolute;
@@ -70,5 +70,31 @@
     border-radius: 15px;
     box-shadow: 0 8px 0 rgb(0, 0 ,0 ,.2),0 8px 0 #1782b3;
     height: 38px;
+    top: 0;
+}
+.user__logout{
+    margin-top: 1rem;
+}
+.user__logout button{
+    background-color: #f00f16;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 100%;
+    font-weight: 600;
+    color: #fff;
+    height: 40px;
+}
+.user__logout button::after{
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    background: #f00f16;
+    border-radius: 8px;
+    box-shadow: 0 8px 0 rgb(0, 0 ,0 ,.2),0 8px 0 #a10a0f;;
+    height: 35px;
     top: 0;
 }

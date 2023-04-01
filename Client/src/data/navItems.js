@@ -14,8 +14,9 @@ export default [
         iconImage: "https://d35aaqx5ub95lt.cloudfront.net/vendor/0e58a94dda219766d98c7796b910beee.svg",
         url:"blogs"
     },
-    // {
-    //     name:"More",
-    //     iconImage: "https://d35aaqx5ub95lt.cloudfront.net/vendor/7159c0b5d4250a5aea4f396d53f17f0c.svg"
-    // },
+    {
+        name:"Buy Ngoc Phuc some Coffee",
+        iconImage: "https://static.vecteezy.com/system/resources/previews/013/860/284/original/hand-drawn-cartoon-coffee-with-beans-free-png.png",
+        url:"http://localhost:3000/api/momo/user"
+    },
 ];

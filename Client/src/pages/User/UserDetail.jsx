@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import Blogs from "../Blogs/Blogs";
 import pending from "../../assets/imgs/pending.gif";
 import { AuthContext } from "../../context/authReducer/authContext";
+import {useLogout} from "../../hooks/useLogout";
 const UserDetail = () => {
     const { state } = useContext(AuthContext);
     const [isPending, setPending] = useState(false);
@@ -12,8 +13,9 @@ const UserDetail = () => {
     const [user, setUser] = useState(null);
     const [imageFile, setFile] = useState(null);
     const imageRef = useRef(null);
+    const {logout}= useLogout();
     useEffect(() => {
-        const res = fetch(`http://localhost:3000/api/users/user/${id}`)
+        fetch(`http://localhost:3000/api/users/user/${id}`)
             .then(res => res.json())
             .then(data => {
                 setUser(data);
@@ -43,13 +45,16 @@ const UserDetail = () => {
             setPending(false)
         }
     }
+    function handleLogout(){
+        logout();
+    }
     return (
         <div className="user__container">
             {user && (
                 <>
                     <div className="user__detail">
                         <div className="user__image">
-                            <img src="https://simg-ssl.duolingo.com/avatars/493426927/ByiRst58qf/xxlarge" alt="" ref={imageRef} />
+                            <img src={user.image?.img_url ? user.image?.img_url:"https://simg-ssl.duolingo.com/avatars/493426927/ByiRst58qf/xxlarge"} alt="" ref={imageRef} />
                             <button className="user__change__image">
                                 <label htmlFor="">
                                     <input
@@ -72,6 +77,9 @@ const UserDetail = () => {
                                 <span>Joined <span> </span>
                                     {new Date(user.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric" }).toString()}
                                 </span>
+                            </div>
+                            <div className="user__logout">
+                                <button onClick={handleLogout}>Log out</button>
                             </div>
                         </div>
                         <div className="confirm__change">

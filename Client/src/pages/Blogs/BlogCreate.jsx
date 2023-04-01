@@ -14,6 +14,9 @@ const BlogCreate = () => {
     function handleChange(e, editor) {
         if (e?.target) {
             const { name, value } = e.target;
+            if(name === "title"){
+                document.title = value;
+            }
             return setInput(preInput => ({ ...preInput, [name]: value }));
         }
         return setInput(preInput => ({ ...preInput, body: editor.getData() }));
@@ -21,7 +24,7 @@ const BlogCreate = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         await postBlog("http://localhost:3000/api/blog/create-blog", input.title, input.snippet, input.body);
-        navigate("blogs");
+        navigate("/blogs");
     }
     return (
         <div className="auth__layout">
