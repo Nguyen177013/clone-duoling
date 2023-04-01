@@ -98,7 +98,7 @@ const UserDetail = () => {
                     <hr />
                     <div className="user__blogs">
                         <h1 className="blogs__title">Blogs created</h1>
-                        <Blogs />
+                        <Blogs user = {id}/>
                     </div>
                 </>
             )}

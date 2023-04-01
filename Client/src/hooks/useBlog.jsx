@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import {AuthContext} from "../context/authReducer/authContext"
 
 
-
-
 export default function useBlog(){
     const { state } = useContext(AuthContext);
     const {token} = state.user;
@@ -29,10 +27,28 @@ export default function useBlog(){
         }
         if(respone.ok){
             setLoading(true);
-            //  save user to local storage
-            // update auth context
             setLoading(false);
         }
     }
-    return{errors, postBlog, isLoading};
+    const editBlog = async (url, data)=>{
+        setLoading(true);
+        setErrors(null);
+        const res = await fetch(url,
+        {
+            method:"POST",
+            headers: { "Authorization": `Bearer ${token}` , "content-type": "application/json"},
+            body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (!res.ok) {
+            console.log(json);
+            setLoading(false);
+            setErrors(json.error);
+        }
+        if(res.ok){
+            setLoading(true);
+            setLoading(false);
+        }
+    }
+    return{errors, postBlog, isLoading, editBlog};
 }

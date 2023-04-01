@@ -3,6 +3,8 @@ import { Link, useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import speaker from "../../assets/imgs/speaker.png"
 import useLevelsUser from "../../hooks/useLevelsUser";
+import microphone from "../../assets/imgs/microphone.png"
+
 const Questions = () => {
     const { state } = useLocation();
     const { id } = useParams();
@@ -12,6 +14,7 @@ const Questions = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [inCorrectAnswer, setInCorrectAnswer] = useState([]);
     const [isCorrect, setIsCorrect] = useState(null);
+    const [isOn, setIsOn] = useState(false);
     const [status, setStatus] = useState({
         selected: null,
         answer: null,
@@ -28,16 +31,16 @@ const Questions = () => {
                 });
         }
     }, []);
-    // console.log(questions);
+
     function handleSubmit() {
         const { answer } = status;
         if (answer === true) {
             setIsCorrect(true);
-            setStatus(preStatus => ({ ...preStatus, message: "Excellent", percent: preStatus.percent + 25 }));
+            setStatus(preStatus => ({ ...preStatus, message: "Excellent", percent: preStatus.percent + (100 / 9) }));
         }
         else {
             setIsCorrect(false);
-            setStatus(preStatus => ({ ...preStatus, message: "You fucking donkey" }));
+            setStatus(preStatus => ({ ...preStatus, message: "You're a fucking donkey" }));
             setInCorrectAnswer(preIncorrect => ([...preIncorrect, questions[currentQuestion]]));
         }
     }
@@ -52,6 +55,31 @@ const Questions = () => {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
+    }
+    function handleSpeechtoText(answer){
+        console.log(answer);
+        let speech = true;
+        let check = ""
+        window.SpeechRecognition = window.webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+        recognition.lang = 'en-US'
+        recognition.interimResults = true;
+        recognition.addEventListener('result', function(e){
+            const transcript = Array.from(e.results).map((result)=>result[0]).map((result)=> result.transcript);
+            check = transcript[0];
+            setIsOn(true);
+        })
+        if(speech){
+            recognition.start();
+        }
+        recognition.addEventListener('end',function(e){
+            setIsOn(false);
+            console.log(check);
+            if(check.toLocaleUpperCase() === answer.toLocaleUpperCase()){
+                setIsCorrect(true);
+                setStatus(preStatus => ({ ...preStatus, message: "Excellent", percent: preStatus.percent + (100 / 9) }));
+            }
+        })
     }
     function handleContinue() {
         setStatus(preCurrent => ({
@@ -93,6 +121,11 @@ const Questions = () => {
                                 <h1>
                                     {questions[currentQuestion].type.type_name === "Listenning" ?
                                         (<img src={speaker} alt="" onClick={() => handleTexttoSpeech(questions[currentQuestion].question)} />)
+                                        :
+                                        questions[currentQuestion].type.type_name === "Speaking" ?
+                                        (<img src={microphone} alt="" onClick={()=>handleSpeechtoText(
+                                            questions[currentQuestion].options[0].option
+                                        )} style={isOn?{opacity:"0.5"}:{opacity:"1"}}/>)
                                         :
                                         (<span>{questions[currentQuestion].question}</span>)}
                                 </h1>

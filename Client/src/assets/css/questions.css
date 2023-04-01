@@ -39,7 +39,7 @@
 
 .status__bar__state{
     position: absolute;
-    background-color: #f44773;
+    background-color: #09ca0f;
     height: 16px;
     width: 0%;
     transition: .2s;

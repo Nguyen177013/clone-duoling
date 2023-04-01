@@ -28,6 +28,17 @@ class BlogController {
             res.status(400).json({ error: err.message });
         }
     }
+    async editBlog(req, res){
+        const blogId = req.params.id;
+        const data = req.body;
+        try{
+            await blogsModel.findByIdAndUpdate(blogId,data);
+            res.status(200).json({mggs:"Blog updated successfully"});
+        }
+        catch(err){
+            res.status(406).json({ error: err.message });
+        }
+    }
     async removeBlog(req, res){
         const blogId = req.params.id;
         try{

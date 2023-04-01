@@ -175,6 +175,16 @@ article:hover{
 .refuse__btn{
     background: #f00f16;
 }
+.input__change{
+    width: 100%;
+    padding: 10px 25px;
+    font-size: 100%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+.input__change:focus{
+    outline: none;
+}
 h1,h2,h3,h4{
     margin: 10px 0;
 }

@@ -2,9 +2,9 @@ import "../../assets/css/blogs.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/authReducer/authContext";
-import { formatDistanceToNow} from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 
-const Blogs = () => {
+const Blogs = (props) => {
     const [blogs, setBlogs] = useState(null);
     const { state } = useContext(AuthContext);
     const { token } = state.user;
@@ -25,7 +25,7 @@ const Blogs = () => {
             <div className="blogs__feed">
                 {blogs && blogs.blogs.map(blog => (
                     <article key={blog._id}>
-                        <Link to ={`/blogs/blog/${blog._id}`}>
+                        <Link to={`/blogs/blog/${blog._id}`}>
                             <div className="blog__content">
                                 <div className="blog__timepost">
                                     <span>{formatDistanceToNow(new Date(blog.createdAt), { addSuffix: true })}</span>
