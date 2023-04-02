@@ -108,6 +108,7 @@ const Questions = () => {
     }
     return (
         < div className="questions" >
+            {!(questions[currentQuestion]) && <h1>Chưa có câu  hỏi nào trong đây cả.</h1>}
             {(questions[currentQuestion]) && (
                 <div className="questions__container">
                     <div className="questions__header flex align-item__center">

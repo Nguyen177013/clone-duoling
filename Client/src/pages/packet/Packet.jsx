@@ -1,7 +1,4 @@
 import Levels from "../Levels/Levels";
-import { AuthContext } from "../../context/authReducer/authContext";
-import { useContext } from "react";
-
 const Packet = (props) => {
     return (
         <section>
@@ -9,7 +6,7 @@ const Packet = (props) => {
                 <h1 className="quiz__levels__header__title">State {props.index + 1}:</h1>
                 <span className="quiz__levels__header__des">{props.title}</span>
             </header>
-            {props.levels.map((level, index) => {
+            {props.levels.map((level) => {
                 let hasDone = false;
                 if (level.user.includes(props._id)) {
                     hasDone = true;
