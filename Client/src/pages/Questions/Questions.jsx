@@ -40,7 +40,7 @@ const Questions = () => {
         }
         else {
             setIsCorrect(false);
-            setStatus(preStatus => ({ ...preStatus, message: "You're a fucking donkey" }));
+            setStatus(preStatus => ({ ...preStatus, message: "Gordon Ramsay famous insults" }));
             setInCorrectAnswer(preIncorrect => ([...preIncorrect, questions[currentQuestion]]));
         }
     }
@@ -52,7 +52,10 @@ const Questions = () => {
         }));
     }
     function handleTexttoSpeech(text) {
+        let voices = window.speechSynthesis.getVoices();
+        console.log(voices);
         const msg = new SpeechSynthesisUtterance();
+        msg.voice = voices[1];
         msg.text = text;
         window.speechSynthesis.speak(msg);
     }

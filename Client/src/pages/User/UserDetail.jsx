@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import "../../assets/css/user.css";
 import { useState, useEffect, useRef, useContext } from "react";
 import Blogs from "../Blogs/Blogs";
@@ -9,15 +8,17 @@ const UserDetail = () => {
     const { state } = useContext(AuthContext);
     const [isPending, setPending] = useState(false);
     const { token } = state.user;
-    const { id } = useParams();
     const [user, setUser] = useState(null);
     const [imageFile, setFile] = useState(null);
     const imageRef = useRef(null);
     const {logout}= useLogout();
     useEffect(() => {
-        fetch(`http://localhost:3000/api/users/user/${id}`)
+        fetch(`http://localhost:3000/api/users/user/`,{
+            headers: { Authorization: `Bearer ${token}` },
+        })
             .then(res => res.json())
             .then(data => {
+                console.log("đây là : ",data);
                 setUser(data);
             })
     }, [])
@@ -34,7 +35,7 @@ const UserDetail = () => {
         const form = new FormData();
         form.append("file", imageFile);
         setPending(true);
-        const response = await fetch(`http://localhost:3000/api/users/user/${user._id}`,
+        const response = await fetch(`http://localhost:3000/api/users/user`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
@@ -42,7 +43,8 @@ const UserDetail = () => {
             });
         const json = await response.json();
         if(json){
-            setPending(false)
+            setPending(false);
+            setFile(false);
         }
     }
     function handleLogout(){
@@ -98,7 +100,7 @@ const UserDetail = () => {
                     <hr />
                     <div className="user__blogs">
                         <h1 className="blogs__title">Blogs created</h1>
-                        <Blogs user = {id}/>
+                        <Blogs/>
                     </div>
                 </>
             )}

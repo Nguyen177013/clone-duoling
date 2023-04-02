@@ -7,8 +7,9 @@ class BlogController {
     }
     async getBlog(req, res) {
         const blogId = req.params.id;
-        const data = await blogsModel.findById(blogId);
-        res.json(data);
+        const user = await req.user;
+        const blog = await blogsModel.findById(blogId);
+        res.json({blog,user});
     }
     async createBlog(req, res) {
         const { title, snippet, body } = req.body;
@@ -21,7 +22,6 @@ class BlogController {
                 userId: user._id,
                 userName: user.username,
             }
-            console.log(blogUser);
             await blogsModel.create({ title, snippet, body, user:blogUser });
             res.json({ mssg: "Blog has been created" });
         } catch (err) {

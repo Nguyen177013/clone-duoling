@@ -8,6 +8,7 @@ const Packets = (props) => {
     const {token} = state.user;
     const [packets, setPackets] = useState(null);
     const [isPending, setPending] = useState(true);
+    const [userId, setUserId] = useState(null);
     useEffect(() => {
         fetch("http://localhost:3000/api/packages/getLevels", {
             headers: {"Authorization": `Bearer ${token}` }
@@ -16,6 +17,7 @@ const Packets = (props) => {
             .then(data => {
                 setPending(false);
                 setPackets(data);
+                setUserId(data.user._id);
             })
         return function clean() {
 
@@ -28,7 +30,7 @@ const Packets = (props) => {
                     <img src={pending} alt="" className="pending__img" />
                 </h4>}
             {packets && (
-                packets.data.map((packet, index) => (<Packet key={packet._id} {...packet} index={index} />))
+                packets.data.map((packet, index) => (<Packet key={packet._id} {...packet} index={index} _id = {userId}/>))
             )}
         </div>
     );

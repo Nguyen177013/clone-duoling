@@ -25,11 +25,11 @@ function App() {
             <Route index element={<Quizs />} />
             <Route path="learn/unit/:id" element={<Questions />} />
             <Route path="blogs" >
-              <Route index element={<Blogs/>}></Route>
+              <Route index element={state.user ? <Blogs/>: <Navigate to="auth" />}/>
               <Route path="create" element ={<BlogCreate/>}></Route>
               <Route path="blog/:id" element ={<BlogDetail/>} />
             </Route>
-            <Route path ="user/:id" element={<UserDetail/>}/>
+            <Route path ="user" element={<UserDetail/>}/>
           </Route>
           <Route path="/reset-password" element={<ResetLayout />}>
             <Route index element={<FormEmail />} />

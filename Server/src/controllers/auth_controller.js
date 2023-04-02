@@ -30,7 +30,7 @@ class authController {
             console.log("this is user: " + user);
             //   create token
             const token = createToken(user._id);
-            res.status(200).json({ user: user.username, token, _id: user.id });
+            res.status(200).json({ user: user.username, token,});
         }
         catch (err) {
             res.status(401).json({ error: err.message });
@@ -45,7 +45,7 @@ class authController {
             //   create token
             const token = createToken(user._id);
 
-            res.status(200).json({ user: user.username, token, _id: user.id });
+            res.status(200).json({ user: user.username, token,});
         }
         catch (err) {
             res.status(401).json({ error: err.message });
@@ -55,6 +55,7 @@ class authController {
 
     // login Google 
     googleLogin(req, res, next) {
+        console.log("Chạy gửi mail nè :))");
         passport.authenticate('google', { failureRedirect: 'http://127.0.0.1:5173/auth', failureMessage: true },
             async function (err, user, info) {
                 const username = user.displayName;
@@ -69,7 +70,7 @@ class authController {
                         user = check;
                     }
                     const token = createToken(user._id);
-                    req.app.local = { user: user.username, token, _id: user.id };
+                    req.app.local = { user: user.username, token, };
                     res.send("<script>window.close()</script>");
                 }
                 catch (err) {

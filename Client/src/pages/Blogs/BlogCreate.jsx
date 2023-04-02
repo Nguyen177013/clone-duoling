@@ -39,6 +39,7 @@ const BlogCreate = () => {
                             name="title"
                             value={input.title}
                             onChange={handleChange}
+                            required
                         />
 
                         <input
@@ -47,6 +48,7 @@ const BlogCreate = () => {
                             name="snippet"
                             value={input.snippet}
                             onChange={handleChange}
+                            required
                         />
                         <CKEditor
                             editor={ClassicEditor}

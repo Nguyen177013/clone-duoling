@@ -3,8 +3,6 @@ import { AuthContext } from "../../context/authReducer/authContext";
 import { useContext } from "react";
 
 const Packet = (props) => {
-    const { state } = useContext(AuthContext);
-    const { _id } = state.user;
     return (
         <section>
             <header className="quiz__levels__header primary__header__design">
@@ -13,7 +11,7 @@ const Packet = (props) => {
             </header>
             {props.levels.map((level, index) => {
                 let hasDone = false;
-                if (level.user.includes(_id)) {
+                if (level.user.includes(props._id)) {
                     hasDone = true;
                 }
                 return (

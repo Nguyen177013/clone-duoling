@@ -15,11 +15,12 @@ const BlogDetail = () => {
     const [editable, setEdit] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
     const { state } = useContext(AuthContext);
+    const [author, setAuthor] = useState(null);
     const [inputForm, setInputForm] = useState({
         title: "",
         body: "",
     });
-    const { token, _id } = state.user;
+    const { token} = state.user;
     useEffect(() => {
         fetch(`http://localhost:3000/api/blog/get-blog/${blogId}`,
             {
@@ -27,12 +28,13 @@ const BlogDetail = () => {
             })
             .then(res => res.json())
             .then(data => {
-                document.title = data.title;
+                document.title = data.blog.title;
                 setInputForm({
-                    title: data.title,
-                    body: data.body,
+                    title: data.blog.title,
+                    body: data.blog.body,
                 });
-                setBlog(data);
+                setBlog(data.blog);
+                setAuthor(data.user._id);
                 return;
             })
             .catch(err => console.error(err));
@@ -78,6 +80,7 @@ const BlogDetail = () => {
                         className="confirm__modal"
                         style={modalStatus ? { display: "flex" } : {}}
                     >
+                        
                         <div className="confirm__container">
                             <h2>This blog can not restore after remove it</h2>
                             <p>Do you want to remove it ?</p>
@@ -89,7 +92,7 @@ const BlogDetail = () => {
                     </div>
                     <div className="blog__container">
                     {errors && <div className="error">{errors}</div>}
-                        <div className="blog__options" style={(_id === blog.user.userId) ? { display: "block" } : { display: "none" }}>
+                        <div className="blog__options" style={(author === blog.user.userId) ? { display: "block" } : { display: "none" }}>
                             <div className="btn__edit">
                                 {!editable && <button onClick={handleEdit}>Edit Blog</button>}
                                 {editable &&

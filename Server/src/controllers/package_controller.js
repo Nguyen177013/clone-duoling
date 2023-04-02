@@ -21,7 +21,8 @@ class PackageController {
         let data = await PackageModel.find({}).populate({
             path:"levels"
         })
-        res.json({data:data});
+        let user = await req.user;
+        res.json({data:data, user});
     }
 }
 

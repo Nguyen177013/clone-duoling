@@ -7,8 +7,8 @@ const upload = require("../middleware/multer");
 const requireAuth = require("../middleware/requireAuth");
 
 
-userRouter.get("/user/:id",userController);
-userRouter.post("/user/:id",requireAuth,upload.single("file"),userController);
+userRouter.get("/user",requireAuth,userController);
+userRouter.post("/user",requireAuth,upload.single("file"),userController);
 userRouter.post("/create", userController);
 userRouter.post("/checkUser", userController);
 userRouter.post("/signup",authController.authSignup);

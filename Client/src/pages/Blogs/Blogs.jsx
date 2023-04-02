@@ -17,7 +17,7 @@ const Blogs = (props) => {
     }, []);
     return (
         <div className="blogs__content">
-            <Link to="create">
+            <Link to="/blogs/create">
                 <div className="blog__create">
                     <button>Add Blogs</button>
                 </div>
