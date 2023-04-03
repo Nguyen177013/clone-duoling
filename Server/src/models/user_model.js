@@ -63,6 +63,7 @@ User.statics.login = async function (username, password) {
 }
 
 User.statics.updatePassword = async function (id, password) {
+    console.log(`user : ${id} change password : ${password}`);
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt);
     const result = await this.findByIdAndUpdate(id, {password:hash});
