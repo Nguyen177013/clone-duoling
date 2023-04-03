@@ -19,13 +19,16 @@ app.use("/api/levels", mainRouter.levels);
 app.use("/api/users", mainRouter.users);
 app.use("/api/types", mainRouter.types);
 app.use("/api/packages", mainRouter.packages);
+app.use("/api/blogs", mainRouter.blogs);
+app.use("/api/admins/", mainRouter.admins);
 
-
-initialize().then(()=>{
+initialize()
+  .then(() => {
     app.listen(port, () => {
-        console.log(`Server is listening on port ${port}`);
-    })
+      console.log(`Server is listening on port ${port}`);
+    });
     database();
-}).catch(ex=>{
+  })
+  .catch((ex) => {
     console.log(ex.message);
-});
+  });

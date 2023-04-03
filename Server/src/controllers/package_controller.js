@@ -2,12 +2,14 @@ const PackageModel = require("../models/package_model");
 
 class PackageController {
     async createPackage(req, res) {
+        const admin = req.admin;
         const Package = new PackageModel({
             title: req.body.title,
             levels: [],
         });
         Package.save();
         res.json(Package);
+        res.json(admin);
     }
     async addLevel(req, res) {
         const addLevel = await PackageModel.findOneAndUpdate(
