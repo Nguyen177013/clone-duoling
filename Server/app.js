@@ -21,7 +21,7 @@ app.use("/api/types", mainRouter.types);
 app.use("/api/packages", mainRouter.packages);
 app.use("/api/blog", mainRouter.blog);
 app.use("/api/momo", mainRouter.momo);
-
+app.use("/api/admin", mainRouter.admin);
 initialize().then(()=>{
     database();
     app.listen(port, () => {

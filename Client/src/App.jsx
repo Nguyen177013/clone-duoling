@@ -13,10 +13,15 @@ import Blogs from "./pages/Blogs/Blogs";
 import BlogCreate from "./pages/Blogs/BlogCreate";
 import BlogDetail from "./pages/Blogs/BlogDetail";
 import UserDetail from "./pages/User/UserDetail";
+import AdminLayout from "./components/Admin/AdminLayout";
 import "./assets/css/app.css"
+import Page404 from "./pages/Page404";
+import AdminAuth from "./pages/Admin/AdminAuth";
+import AdminAuthLayout from "./components/Admin/AuthLayout";
+import AdminQuestions from "./pages/Admin/AdminQuestion";
+
 function App() {
   const { state } = useAuthContext();
-  console.log(state);
   return (
     <BrowserRouter>
       <div className="App">
@@ -25,12 +30,13 @@ function App() {
             <Route index element={<Quizs />} />
             <Route path="learn/unit/:id" element={<Questions />} />
             <Route path="blogs" >
-              <Route index element={state.user ? <Blogs/>: <Navigate to="auth" />}/>
-              <Route path="create" element ={<BlogCreate/>}></Route>
-              <Route path="blog/:id" element ={<BlogDetail/>} />
+              <Route index element={state.user ? <Blogs /> : <Navigate to="auth" />} />
+              <Route path="create" element={<BlogCreate />}></Route>
+              <Route path="blog/:id" element={<BlogDetail />} />
             </Route>
-            <Route path ="user" element={<UserDetail/>}/>
+            <Route path="user" element={<UserDetail />} />
           </Route>
+
           <Route path="/reset-password" element={<ResetLayout />}>
             <Route index element={<FormEmail />} />
             <Route path="change-password" element={<FormReset />} />
@@ -40,6 +46,14 @@ function App() {
             <Route index element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
+          
+          <Route path="admin-auth" element={!state.admin ? <AdminAuthLayout/> : <Navigate to="/admin" />}>
+              <Route index element ={<AdminAuth/> }></Route>
+          </Route>
+            <Route path="/admin" element={state.admin ? <AdminLayout /> : <Navigate to="/admin-auth" />}>
+            <Route index element={<AdminQuestions/>} />
+          </Route>
+          <Route path="*" element ={<Page404/>}/>
         </Routes>
       </div>
     </BrowserRouter>

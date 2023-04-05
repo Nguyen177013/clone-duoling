@@ -1,6 +1,6 @@
-import NavItems from "../Navbar/NavItems";
-import navItems from "../../data/navItems";
-import "../../assets/css/navBar.css";
+import NavItems from "../Admin_Navbar/NavItems";
+import navItems from "../../../data/adminNavItems";
+import "../../../assets/css/navBar.css";
 const Navbar = (props) => {
     return ( 
         <div className="quiz__navbar border__right__fullHeight fixed__left">

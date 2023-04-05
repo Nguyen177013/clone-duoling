@@ -9,4 +9,5 @@ PackageRoute.use(requireAuth);
 PackageRoute.post('/createPackage', packageController.createPackage);
 PackageRoute.post('/addLevel', packageController.addLevel);
 PackageRoute.get('/getLevels', packageController.getLevel);
+PackageRoute.get('/set-up', packageController.setUpLevel);
 module.exports = PackageRoute;
