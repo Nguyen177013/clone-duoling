@@ -6,7 +6,9 @@
       box-sizing: border-box;
       font-family: 'Source Sans 3', sans-serif;
   }
-
+html, body{
+    height: 100%;
+}
   .border__right__fullHeight {
       border-right: 2px solid rgba(229, 229, 229, 1);
       height: 100vh;

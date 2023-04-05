@@ -1,5 +1,6 @@
 const LevelModel = require("../models/level_model");
-
+const mongoose = require("mongoose");
+const QuestionsModel = require("../models/question_model")
 class LevelController {
     async createLevel(req, res) {
         const Level = new LevelModel({
@@ -10,20 +11,44 @@ class LevelController {
         res.json(Level);
     }
     async updateUserLevel(req, res) {
+        let user = await req.user;
+        let levelId = req.body._id;
+        const userContain = await LevelModel.find({ user: user._id, _id: levelId });
+        if (userContain.length > 0) {
+            return res.json({ mssg: "User already done this Level" });
+        }
         const updateUser = await LevelModel.findByIdAndUpdate(
-            { _id: req.body._id },
-            {$push : {user : req.body.id_User}},
+            { _id: levelId },
+            { $push: { user: user._id } },
             { new: true }
         );
-        res.json(updateUser);
+        return res.json(updateUser);
     }
-    async updateQuestionLevel(req, res){
-        const updateQuestion = await LevelModel.findByIdAndUpdate(
-            { _id: req.body._id },
-            {$push : {questions : req.body.id_Question}},
-            { new: true }
-        );
-        res.json(updateQuestion);
+    async updateQuestionLevel(req, res) {
+        const data = req.body;
+        console.log(data);
+        try {
+            if (data.questions) {
+                await LevelModel.findByIdAndUpdate(
+                    { _id: data.level },
+                    { $push: { questions: data.questions } },
+                    { new: true }
+                );
+                res.json({ mssg: "success update user" });
+            }
+            else {
+                const newQuestion = await QuestionsModel.create({question: data.question, options: data.option, type:data.type});
+                console.log("this is ID: ",newQuestion._id);
+                await LevelModel.findByIdAndUpdate(
+                    { _id: data.level },
+                    { $push: { questions: newQuestion._id } },
+                    { new: true }
+                );
+                res.json({ mssg: "success update user" });
+            }
+        } catch(ex){
+            res.json({error:ex.message});
+        }
     }
 }
 

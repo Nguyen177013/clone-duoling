@@ -2,6 +2,28 @@ const express = require("express");
 const userController = express.Router();
 const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
+const cloudinary = require('./cloudinary');
+
+
+userController.get("/user", async function(req, res){
+    const userId = await req.user;
+    const user = await User.findById(userId._id);
+    res.json(user);
+});
+
+userController.post("/user", async function(req, res){
+    let file = req.file;
+    const userId = await req.user;
+    const user = await User.findById(userId._id);
+    console.log("hi cloudinary");
+    if(user.image.id){
+        await cloudinary.v2.uploader.destroy(user.image.id);
+    }
+    const image = await cloudinary.v2.uploader.upload(file.path,{folder: "/User_Ava/"});
+    console.log("This is ur image :D");
+    await User.findByIdAndUpdate(userId._id,{image:{id:image.public_id,img_url:image.secure_url}});
+    res.json("hi")
+});
 
 userController.post(
     "/create",

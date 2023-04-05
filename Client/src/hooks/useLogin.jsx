@@ -31,5 +31,37 @@ export default function useLogin(){
             setLoading(false);
         }
     }
-    return{errors, login, isLoading};
+    const adminLogin = async(url, username, signature) =>{
+        setLoading(true);
+        setErrors(null);
+        const respone = await fetch(url,{
+            crossDomain:true,
+            method:"POST",
+            headers:{
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({username, signature})
+        })
+        const json = await respone.json();
+        if (!respone.ok) {
+            console.log(json);
+            setLoading(false);
+            setErrors(json.error);
+        }
+        if(respone.ok){
+            setLoading(true);
+            //  save user to local storage
+            localStorage.setItem('admin', JSON.stringify(json));
+            dispatch(actions.adminAuthLogin(json));
+            setLoading(false);
+        }
+    }
+    const googleAuth = async ()=>{
+        const res = await fetch("http://localhost:3000/api/users/google/success");
+        const json = await res.json();
+        localStorage.setItem('user', JSON.stringify(json));
+        dispatch(actions.authLogin(json));
+        window.location.reload();
+    }
+    return{errors, login, isLoading, googleAuth, adminLogin};
 }

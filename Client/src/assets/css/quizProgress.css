@@ -83,7 +83,7 @@
 .target__bar::before{
     content: " ";
     position: absolute;
-    background-color: #f44773;
+    background-color: #09ca0f;
     height: 10px;
     width: 50px;
     border-radius: 10px;

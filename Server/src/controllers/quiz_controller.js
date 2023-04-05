@@ -7,7 +7,7 @@ class QuizController {
     }
     async getQuiz(req, res){
         let quizId = req.params.id;
-        let data = await questionModel.findById(quizId);
+        let data = await questionModel.findById(quizId).populate('type');;
         res.json(data);
     }
     async createQuiz(req, res){

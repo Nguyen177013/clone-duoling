@@ -1,6 +1,6 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-const Levels = ({index, other}) => {
+const Levels = ({ index, other, hasDone }) => {
     useEffect(() => {
         const levels = document.querySelectorAll(`.level-${index}`);
         levels.forEach((level, index) => {
@@ -29,13 +29,19 @@ const Levels = ({index, other}) => {
         }
     }, [])
     return (
-        <div className="levels flex__column align-item__center">
+        <div className="levels flex__column align-item__center" >
             <div className={`level-${index} question__first`}>
                 <div className="level__btn">
-                    <Link to={`/learn/unit/${other._id}`} state={{questions:other.questions}} >
-                        <button>
-                            {index}
-                        </button>
+                    <Link to={`/learn/unit/${other._id}`} state={{ questions: other.questions }} >
+                        {hasDone ? (
+                            <button className="hasdone">
+                                {index}
+                            </button>
+                        ) : (
+                            <button className = "disabled">
+                                {index}
+                            </button>
+                        )}
                     </Link>
                 </div>
             </div>

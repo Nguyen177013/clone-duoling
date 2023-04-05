@@ -10,10 +10,8 @@ const Navbar = (props) => {
                 </a>
             </div>
             <div className="quiz__navitems">
-                {navItems.map(item=>{
-                    return item.name==="Learn"? 
-                    <NavItems {...item} key ={item.name} status = "item__selected"/>:
-                    <NavItems {...item} key ={item.name}/>
+                {navItems.map((item, index)=>{
+                    return <NavItems {...item} index ={index} key ={item.name}/>
                 })}
             </div>
         </div>
