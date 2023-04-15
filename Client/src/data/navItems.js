@@ -17,6 +17,6 @@ export default [
     {
         name:"Buy Ngoc Phuc some Coffee",
         iconImage: "https://static.vecteezy.com/system/resources/previews/013/860/284/original/hand-drawn-cartoon-coffee-with-beans-free-png.png",
-        url:"http://localhost:3000/api/momo/"
+        url:"http://localhost:3000/api/momo/sending/"
     },
 ];

@@ -3,12 +3,12 @@ import { AuthContext } from "../../context/authReducer/authContext";
 import { useContext } from "react";
 const NavItems = (props) => {
     const {state} = useContext(AuthContext);
-    const _id = state?.user?._id;
+    const token = state.user?.token;
     return (
         //     color: #1cb0f6;
         <div className={props.status || "uft"}>
             <NavLink
-                to={(props.url =='user' || props.index === 3)? props.url : props.url}
+                to={(props.index === 3)? props.url+`${token}` : props.url}
                 className={({isActive})=>(isActive)?"nav__item item__selected":"nav__item"}
                 >
                 <span className="item">

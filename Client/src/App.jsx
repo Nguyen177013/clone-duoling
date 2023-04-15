@@ -19,6 +19,9 @@ import Page404 from "./pages/Page404";
 import AdminAuth from "./pages/Admin/AdminAuth";
 import AdminAuthLayout from "./components/Admin/AuthLayout";
 import AdminQuestions from "./pages/Admin/AdminQuestion";
+import AdminAllQuestions from "./pages/Admin/AdminAllQuestions";
+import AdminUserDonations from "./pages/Admin/AdminUserDonations";
+
 
 function App() {
   const { state } = useAuthContext();
@@ -28,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={state.user ? <Layout /> : <Navigate to="auth" />}>
             <Route index element={<Quizs />} />
-            <Route path="learn/unit/:id" element={<Questions />} />
+            <Route path="learn/unit/" element={<Questions />} />
             <Route path="blogs" >
               <Route index element={state.user ? <Blogs /> : <Navigate to="auth" />} />
               <Route path="create" element={<BlogCreate />}></Route>
@@ -52,6 +55,8 @@ function App() {
           </Route>
             <Route path="/admin" element={state.admin ? <AdminLayout /> : <Navigate to="/admin-auth" />}>
             <Route index element={<AdminQuestions/>} />
+            <Route path="questions" element={<AdminAllQuestions/>}/>
+            <Route path="donation" element={<AdminUserDonations/>}/>
           </Route>
           <Route path="*" element ={<Page404/>}/>
         </Routes>
