@@ -28,11 +28,12 @@ const Levels = ({ index, other, hasDone }) => {
         return () => {
         }
     }, [])
+    // console.log(other._id);
     return (
         <div className="levels flex__column align-item__center" >
             <div className={`level-${index} question__first`}>
                 <div className="level__btn">
-                    <Link to={`/learn/unit/`} state={{ questions: other.questions }} >
+                    <Link to={`/learn/unit/`} state={{ questions: other.questions, levelId:other._id }} >
                         {hasDone ? (
                             <button className="hasdone">
                                 {index}
