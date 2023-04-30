@@ -1,12 +1,12 @@
 import "../../assets/css/blogs.css";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../context/authReducer/authContext";
-
+// import { AuthContext } from "../../context/authReducer/authContext";
+import { useSelector } from "react-redux";
 const AdminAllQuestions = (props) => {
     const [questions, setQuestions] = useState(null);
     const [preQuestions, setPreQuestions] = useState(null);
     const [inputFind, setInput] = useState("");
-    const { state } = useContext(AuthContext);
+    const  state  = useSelector(state => state.auth);
     const { admin } = state;
     useEffect(() => {
         fetch("http://localhost:3000/api/questions/", {
