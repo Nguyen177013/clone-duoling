@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import useUpdateLevel from "../../hooks/useUpdateLevel";
+import { useSelector } from "react-redux";
 const AdminQuestions = () => {
     // const { state } = useAuthContext();
     const {errors, isLoading, submitChange} = useUpdateLevel();
-    const admin = {};
+    const {admin} = useSelector(state => state.auth);
     const [apiData, setApiData] = useState({
         types: null,
         questions: null,

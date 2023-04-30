@@ -1,13 +1,13 @@
 
 import { useContext, useState } from "react";
 import * as actions from "../context/authReducer/action";
-import { AuthContext } from "../context/authReducer/authContext";
-
+// import { AuthContext } from "../context/authReducer/authContext";
+import { useSelector } from "react-redux";
 export default function useUpdateLevel(){
     const [errors, setErrors] = useState(null);
     const [isLoading, setLoading] = useState(null);
-    const {state} = useContext(AuthContext);
-    const { admin } = state;
+    const state = useSelector(state => state.auth);
+    const  {admin}  = state;
     const submitChange = async(questions = null, level = null, option, question, type, url = "http://localhost:3000/api/levels/updateQuestionLevel") =>{
         setLoading(true);
         setErrors(null);
