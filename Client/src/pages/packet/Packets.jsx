@@ -1,10 +1,10 @@
 import Packet from "./Packet";
 import pending from "../../assets/imgs/pending.gif";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../context/authReducer/authContext";
-
+// import { AuthContext } from "../../context/authReducer/authContext";
+import { useSelector } from "react-redux";
 const Packets = (props) => {
-    const {state} = useContext(AuthContext);
+    const state = useSelector(state => state.auth);
     const {token} = state.user;
     const [packets, setPackets] = useState(null);
     const [isPending, setPending] = useState(true);

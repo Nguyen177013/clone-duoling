@@ -1,12 +1,13 @@
 import "../../assets/css/blogs.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../context/authReducer/authContext";
+// import { AuthContext } from "../../context/authReducer/authContext";
 import { formatDistanceToNow } from 'date-fns'
+import { useSelector } from "react-redux";
 
 const Blogs = (props) => {
     const [blogs, setBlogs] = useState(null);
-    const { state } = useContext(AuthContext);
+    const state  = useSelector(state => state.auth);
     const { token } = state.user;
     useEffect(() => {
         fetch("http://localhost:3000/api/blog/get-blogs", {

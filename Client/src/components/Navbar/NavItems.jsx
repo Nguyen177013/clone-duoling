@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../context/authReducer/authContext";
-import { useContext } from "react";
+// import { useContext } from "react";
+import { useSelector } from "react-redux";
 const NavItems = (props) => {
-    const {state} = useContext(AuthContext);
+    const state = useSelector(state => state.auth);
     const token = state.user?.token;
     return (
         //     color: #1cb0f6;

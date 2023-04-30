@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import useUpdateLevel from "../../hooks/useUpdateLevel";
 const AdminQuestions = () => {
-    const { state } = useAuthContext();
+    // const { state } = useAuthContext();
     const {errors, isLoading, submitChange} = useUpdateLevel();
-    const { admin } = state;
+    const admin = {};
     const [apiData, setApiData] = useState({
         types: null,
         questions: null,

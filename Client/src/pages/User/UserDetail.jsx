@@ -2,10 +2,12 @@ import "../../assets/css/user.css";
 import { useState, useEffect, useRef, useContext } from "react";
 import Blogs from "../Blogs/Blogs";
 import pending from "../../assets/imgs/pending.gif";
-import { AuthContext } from "../../context/authReducer/authContext";
+// import { AuthContext } from "../../context/authReducer/authContext";
+import { useSelector } from "react-redux";
+
 import {useLogout} from "../../hooks/useLogout";
 const UserDetail = () => {
-    const { state } = useContext(AuthContext);
+    const  state  = useSelector(state => state.auth);
     const [isPending, setPending] = useState(false);
     const { token } = state.user;
     const [user, setUser] = useState(null);
