@@ -1,7 +1,9 @@
 const crypto = require('crypto');
-function getOption(userId) {
+const paymentModel = require("../models/payment_model");
+
+async function getOption(code, id, username) {
     let partnerCode = process.env.momo_partner_code;
-    let partnerClientId = userId;
+    let partnerClientId = code;
     let accessKey = process.env.momo_access_key;
     let secretkey = process.env.momo_secret_key;
     let requestId = partnerCode + new Date().getTime();
@@ -41,6 +43,11 @@ function getOption(userId) {
             'Content-Length': Buffer.byteLength(requestBody)
         }
     }
+    let userId= id;
+    let userName = username;
+    console.log("thanh toán thành công :ED");
+    // await paymentModel.create({user:{userId, userName}});
+
     return {options,requestBody};
 }
 module.exports = {getOption};

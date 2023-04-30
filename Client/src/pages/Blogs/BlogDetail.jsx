@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { formatDistanceToNow } from 'date-fns'
-import { AuthContext } from "../../context/authReducer/authContext";
+// import { AuthContext } from "../../context/authReducer/authContext";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import useBlog from "../../hooks/useBlog";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import pending from "../../assets/imgs/pending.gif";
+import { useSelector } from "react-redux";
 
 const BlogDetail = () => {
     const { errors, editBlog, isLoading } = useBlog();
@@ -14,7 +15,7 @@ const BlogDetail = () => {
     const [blog, setBlog] = useState(null);
     const [editable, setEdit] = useState(false);
     const [modalStatus, setModalStatus] = useState(false);
-    const { state } = useContext(AuthContext);
+    const  state  = useSelector(state => state.auth);
     const [author, setAuthor] = useState(null);
     const [inputForm, setInputForm] = useState({
         title: "",

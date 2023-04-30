@@ -1,5 +1,5 @@
 import "../../assets/css/questions.css"
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import speaker from "../../assets/imgs/speaker.png"
 import useLevelsUser from "../../hooks/useLevelsUser";
@@ -7,9 +7,8 @@ import microphone from "../../assets/imgs/microphone.png"
 
 const Questions = () => {
     const { state } = useLocation();
-    const { id } = useParams();
     const { addUser } = useLevelsUser();
-    const { questions: data } = state;
+    const { questions: data, levelId } = state;
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [inCorrectAnswer, setInCorrectAnswer] = useState([]);
@@ -53,14 +52,12 @@ const Questions = () => {
     }
     function handleTexttoSpeech(text) {
         let voices = window.speechSynthesis.getVoices();
-        console.log(voices);
         const msg = new SpeechSynthesisUtterance();
         msg.voice = voices[1];
         msg.text = text;
         window.speechSynthesis.speak(msg);
     }
     function handleSpeechtoText(answer){
-        console.log(answer);
         let speech = true;
         let check = ""
         window.SpeechRecognition = window.webkitSpeechRecognition;
@@ -77,7 +74,6 @@ const Questions = () => {
         }
         recognition.addEventListener('end',function(e){
             setIsOn(false);
-            console.log(check);
             if(check.toLocaleUpperCase() === answer.toLocaleUpperCase()){
                 setIsCorrect(true);
                 setStatus(preStatus => ({ ...preStatus, message: "Excellent", percent: preStatus.percent + (100 / 9) }));
@@ -102,7 +98,7 @@ const Questions = () => {
                 setInCorrectAnswer([]);
             }
             else {
-                addUser(id);
+                addUser(levelId);
             }
         }
     }

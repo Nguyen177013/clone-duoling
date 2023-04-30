@@ -26,7 +26,6 @@ class LevelController {
     }
     async updateQuestionLevel(req, res) {
         const data = req.body;
-        console.log(data);
         try {
             if (data.questions) {
                 await LevelModel.findByIdAndUpdate(

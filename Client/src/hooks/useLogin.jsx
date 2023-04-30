@@ -1,10 +1,13 @@
 import { useContext, useState } from "react";
-import * as actions from "../context/authReducer/action";
-import { AuthContext } from "../context/authReducer/authContext";
+// import * as actions from "../context/authReducer/action";
+// import { AuthContext } from "../context/authReducer/authContext";
+import { useDispatch } from 'react-redux';
+import {authActions} from "../pages/Auth/AuthSlice";
 export default function useLogin(){
+    const dispatch = useDispatch();
     const [errors, setErrors] = useState(null);
     const [isLoading, setLoading] = useState(null);
-    const {dispatch} = useContext(AuthContext);
+    // const {dispatch} = useContext(AuthContext);
     const login = async (url, username, password, email ="") => {
         setLoading(true);
         setErrors(null);
@@ -27,7 +30,7 @@ export default function useLogin(){
             //  save user to local storage
             localStorage.setItem('user', JSON.stringify(json));
             // update auth context
-            dispatch(actions.authLogin(json))
+            dispatch(authActions.loginAuth(json))
             setLoading(false);
         }
     }
@@ -52,7 +55,7 @@ export default function useLogin(){
             setLoading(true);
             //  save user to local storage
             localStorage.setItem('admin', JSON.stringify(json));
-            dispatch(actions.adminAuthLogin(json));
+            dispatch(authActions.loginAdmin(json));
             setLoading(false);
         }
     }
@@ -60,7 +63,7 @@ export default function useLogin(){
         const res = await fetch("http://localhost:3000/api/users/google/success");
         const json = await res.json();
         localStorage.setItem('user', JSON.stringify(json));
-        dispatch(actions.authLogin(json));
+        dispatch(authActions.loginAuth(json));
         window.location.reload();
     }
     return{errors, login, isLoading, googleAuth, adminLogin};

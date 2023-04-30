@@ -1,10 +1,15 @@
 const {getOption} = require("./handleMoMo")
 const https = require('https');
+const jwt = require("jsonwebtoken");
+const userModel = require("../models/user_model");
 class payMentController {
-    getMomo(req, response) {
+    async getMomo(req, response) {
         try {
-            // let userId = req.params.id;
-            let momoOption = getOption("177013");
+            let token = req.params.token;
+            const id = jwt.verify(token, process.env.TOKENSECRET);
+            const user = await userModel.findOne({_id:id._id},{_id:1,username:1});
+            let momoOption = await getOption("177013",user._id, user.username);
+            console.log(momoOption);
             const request = https.request(momoOption.options, res => {
                 let data = '';
                 res.setEncoding('utf8');
@@ -28,7 +33,6 @@ class payMentController {
         }
     }
     async momo_callBack(req,res){
-        console.log("về r nè :))");
         res.redirect('http://127.0.0.1:5173/');
     }
 }

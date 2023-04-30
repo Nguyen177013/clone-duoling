@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
-import {AuthContext} from "../context/authReducer/authContext"
-
+// import {AuthContext} from "../context/authReducer/authContext"
+import { useSelector } from "react-redux";
 
 export default function useBlog(){
-    const { state } = useContext(AuthContext);
+    const  state  = useSelector(state => state.auth);
     const {token} = state.user;
     const [errors, setErrors] = useState(null);
     const [isLoading, setLoading] = useState(null);
