@@ -10,5 +10,6 @@ export function useLogout() {
         localStorage.removeItem("user");
         dispatch(authActions.logoutAuth());
     }
+    // some stuffs
     return {logout};
 }
